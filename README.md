@@ -3,13 +3,20 @@ Calculating the velocities of Kepler stars.
 
 To calculate velocities:
 ----------------------
-*ssh into cluster and navigate to aviary_tests/aviary.
-*Create a new run_.py file and a new pymc3_multi_star.py or edit the get_velocities_general.py.
-*Change the upper and lower indices in the run file, depending on how many stars you want to run on.
-*Change the directory and data file in code/get_velocities_general.py
-*The data file must contain ra, ra_error, dec, dec_error, parallax, parallax_error, pmra, pmra_error, pmdec, pmdec_error.
-*Create a new .sh file and do module load slurm, sbatch <.sh file>.
-*To watch progress: tail -f slurm-.out
+
+For individual stars, run through Demo_Notebook.ipynb.
+For many stars, follow instructions for running on the cluster below.
+
+-ssh into cluster and navigate to aviary_tests/aviary.
+-Create a new run_.py file and a new pymc3_multi_star.py or edit the
+get_velocities_general.py.
+-Change the upper and lower indices in the run file, depending on how many
+stars you want to run on.
+-Change the directory and data file in code/get_velocities_general.py
+-The data file must contain ra, ra_error, dec, dec_error, parallax,
+parallax_error, pmra, pmra_error, pmdec, pmdec_error.
+-Create a new .sh file and do module load slurm, sbatch <.sh file>.
+-To watch progress: tail -f slurm-.out
 
 kepler_kinematics
 ======
@@ -41,6 +48,10 @@ mc_san_gaia_lam.csv.
 
 DATA
 ====
+
+*/kepler_kinematics/gaia_kepler.csv*: This file is created by *code/data.py*.
+It is the Gaia-Kepler crossmatch file, combined with LAMOST RVs, and with
+velocities directly calculated from RVs, where available.
 
 Files used in inference.py to construct a prior:
 gaia_mc5_velocities.csv
