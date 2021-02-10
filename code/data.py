@@ -22,7 +22,7 @@ def load_and_merge_data():
     # Add LAMOST RVs
     lamost = pd.read_csv("../data/KeplerRot-LAMOST.csv")
     lamost["kepid"] = lamost.KIC.values
-    lam = pd.merge(df0, lamost, on="kepid", how="left",
+    lam = pd.merge(gaia, lamost, on="kepid", how="left",
                    suffixes=["", "_lamost"])
     df = lam.drop_duplicates(subset="kepid")
     return df
