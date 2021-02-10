@@ -62,3 +62,5 @@ Files used in data.py:
 
 NOTEBOOKS
 =========
+
+*Demo_Notebook*: A notebook that demonstrates how to calculate stellar velocities.
