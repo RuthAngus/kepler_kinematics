@@ -1,0 +1,109 @@
+# Converting Exploring data into a script.
+
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+
+from astropy.io import fits
+from astropy.coordinates import SkyCoord
+import astropy.units as u
+import astropy.coordinates as coord
+
+import kepler_kinematics as kek
+
+
+def load_and_merge_data():
+    # Load Gaia-Kepler crossmatch.
+    with fits.open("../data/kepler_dr2_1arcsec.fits") as data:
+        gaia = pd.DataFrame(data[1].data, dtype="float64")
+    m = gaia.parallax.values > 0
+    gaia = gaia.iloc[m]
+
+    # Add LAMOST RVs
+    lamost = pd.read_csv("../data/KeplerRot-LAMOST.csv")
+    lamost["kepid"] = lamost.KIC.values
+    lam = pd.merge(df0, lamost, on="kepid", how="left",
+                   suffixes=["", "_lamost"])
+    df = lam.drop_duplicates(subset="kepid")
+    return df
+
+
+def combine_rv_measurements(df):
+    rv, rv_err = [np.ones(len(df))*np.nan for i in range(2)]
+
+    ml = np.isfinite(df.RV_lam.values)
+    rv[ml] = df.RV_lam.values[ml]
+    rv_err[ml] = df.e_RV_lam.values[ml]
+    print(sum(ml), "stars with LAMOST RVs")
+
+    mg = (df.radial_velocity.values != 0)
+    mg &= np.isfinite(df.radial_velocity.values)
+    rv[mg] = df.radial_velocity.values[mg]
+    rv_err[mg] = df.radial_velocity_error.values[mg]
+    print(sum(mg), "stars with Gaia RVs")
+
+    df["rv"] = rv
+    df["rv_err"] = rv_err
+    return df
+
+
+# S/N cuts
+def sn_cuts(df):
+    sn = df.parallax.values/df.parallax_error.values
+
+    m = (sn > 10)
+    m &= (df.parallax.values > 0) * np.isfinite(df.parallax.values)
+    m &= df.astrometric_excess_noise.values < 5
+    print(len(df.iloc[m]), "stars after S/N cuts")
+
+    # Jason's wide binary cuts
+    # m &= df.astrometric_excess_noise.values > 0
+    # m &= df.astrometric_excess_noise_sig.values > 6
+
+    # Jason's short-period binary cuts
+    # m &= radial_velocity_error < 4
+    # print(len(df.iloc[m]), "stars after Jason's binary cuts")
+    # assert 0
+
+    df = df.iloc[m]
+    return df
+
+
+def add_velocities(df):
+    xyz, vxyz = kek.simple_calc_vxyz(df.ra.values, df.dec.values,
+                                    1./df.parallax.values, df.pmra.values,
+                                    df.pmdec.values,
+                                    df.rv.values)
+    vx, vy, vz = vxyz
+    x, y, z = xyz
+
+    df["vx"] = vxyz[0].value
+    df["vy"] = vxyz[1].value
+    df["vz"] = vxyz[2].value
+    df["x"] = xyz[0].value
+    df["y"] = xyz[1].value
+    df["z"] = xyz[2].value
+    return df
+
+
+if __name__ == "__main__":
+    print("Loading data...")
+    df = load_and_merge_data()
+    print(len(df), "stars")
+
+    print("Combining RV measurements...")
+    df = combine_rv_measurements(df)
+    print(len(df), "stars")
+
+    print("S/N cuts")
+    df = sn_cuts(df)
+    print(len(df), "stars")
+
+    print("Calculating velocities")
+    df = add_velocities(df)
+    print(len(df), "stars")
+
+    print("Saving file")
+    fname = "../kepler_kinematics/gaia_kepler.csv"
+    print(fname)
+    df.to_csv(fname)
