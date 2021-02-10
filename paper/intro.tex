@@ -1,0 +1,90 @@
+\section{Introduction}
+
+% Motivation
+Main-sequence dwarfs are the most common stars in the Milky Way, and their
+ages could reveal the evolution of Galactic stellar populations and planetary
+systems.
+However, the ages of low-mass stars, particularly K and M dwarfs are difficult
+to measure because their luminosities and temperatures evolve slowly on the
+main sequence \citep[see][for a review of stellar ages]{soderblom2010}.
+Empirical models that relate the magnetic activity or rotation periods of
+stars to their age can be used to infer the ages of some low-mass dwarfs
+\citep{citations}.
+However, these empirical relations are often poorly calibrated for K and M
+dwarfs and old stars \citep{citations}.
+Galactic kinematics provide an alternative dating method.
+
+The star forming molecular gas clouds observed in the Milky Way have a low
+out-of-plane, or vertical, velocity \citep[\eg][]{stark1989, stark2005,
+aumer2009, martig2014, aumer2016}.
+In contrast, the vertical velocities of older stars are observed to be larger
+in magnitude on average \citep{stromberg1946, wielen1977, nordstrom2004,
+holmberg2007, holmberg2009, aumer2009, casagrande2011, ting2019, yu2018}.
+There are two possible explanations for this observed increase in velocity
+dispersion with age: either stars are born kinematically `cool' and their
+orbits are heated over time via interactions with giant molecular clouds
+\citep[see][for a review of secular evolution in the MW]{sellwood2014}, or
+stars formed kinematically `hotter' in the past \citep[\eg][]{bird2013}.
+Either way, the vertical velocity dispersions of thin disk stars are observed
+to increase with stellar age.
+This behavior is codified by Age-Velocity dispersion Relations (AVRs), which
+typically express the relationship between age and velocity dispersion as a
+power law: $\sigma_v \propto t^\beta$, with free parameter, $\beta$
+\citep[\eg][]{holmberg2009, yu2018}.
+These expressions can be used to infer the ages of groups of stars from their
+velocity dispersions.
+
+Kinematic ages have been used to explore the evolution of cool dwarfs for over
+a decade.
+For example, \citet{west2004, west2006} found that the fraction of
+magnetically active M dwarfs decreases over time, by using the vertical
+distances of stars from the Galactic mid-plane as an age proxy, and
+\citet{west2008} used kinematic ages to calculate the expected activity
+lifetime for M dwarfs of different spectral types.
+\citet{faherty2009} used tangential velocities to infer the ages of M, L and T
+dwarfs, and showed that dwarfs with lower surface gravities tended to be
+kinematically younger, and \citet{kiman2019} used velocity dispersion as an
+age proxy to explore the evolution of H$\alpha$ equivalent width (a magnetic
+activity indicator), in M dwarfs.
+In \citet{angus2020} we explored the kinematic properties of Kepler field
+stars and found that the velocity dispersion of stars increase with stellar
+rotation period, as expected (because both quantities increase with age).
+In \citet{lu2021} we used the velocity dispersions of Kepler field stars to
+estimate their ages using an Age-Velocity dispersion Relation (AVR).
+
+AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
+\vz\ or $UVW$), and these velocities can only be calculated with full 6D
+positional and velocity information, however most \kepler\ rotators do not
+have RV measurements\footnote{Although RVs for most will be released in \gaia\
+DR3}.
+In \citep{angus2020} we used velocity in the direction of Galactic latitude
+(\vb) as a stand-in for \vz\ because, in the {\it Galactic} coordinate system,
+velocities can be calculated from 3D positions and {\it 2D} proper motions.
+The \kepler\ field lies at low Galactic latitude, so \vb\ is a close
+approximation to \vz\ for Kepler stars.
+Although \vb\ velocity dispersion does not equal \vz\ velocity dispersion, it
+still increases monotonically over time and provides accurate age rankings for
+\kepler\ stars.
+In this paper however, we calculate or infer \vz\ for each Kepler star in our
+sample.
+For stars without RV measurements we infer {\it vertical} velocity, \vz, by
+marginalizing over missing RVs using a hierarchical Bayesian model.
+The vertical velocities presented in this paper were used by \citet{lu2021} to
+calculate the velocity dispersions of groups of stars with similar properties,
+which they then converted into ages using an AVR \citep{yu2018}.
+In this work, we extend the work of \citet{lu2021} by applying their kinematic
+dating method to stars with marginal rotation period detections in the Kepler
+field \citep{mcquillan2014}.
+We compare the kinematic ages of stars with and without rotation period
+detections, and those with marginal detections.
+
+This paper is laid out as follows.
+In section \ref{sec:method} we describe how we calculate the kinematic ages of
+Kepler stars from their positions, proper motions and parallaxes (and RVs
+where available).
+We also justify the choice of prior probability density function (PDF).
+In section \ref{sec:results} we use the 3D velocities of Kepler stars to
+calculate the kinematic ages of stars with marginal rotation period
+detections using the method of \citet{lu2021}.
+In section \ref{sec:discussion} we discuss the implications of our results and
+the applications and caveats of our velocities and velocity-inference code.

@@ -1,0 +1,116 @@
+% zip files.zip ms63.tex CMD_cuts_double.pdf main_figure.pdf gap.pdf vb_vs_teff.pdf vb_vz.pdf field_comparison.pdf bib.bib ms.pdf
+
+\documentclass{aastex63}
+
+% Latin
+\newcommand{\ie}{{\it i.e.}}
+\newcommand{\eg}{{\it e.g.}}
+\newcommand{\etal}{{\it et al.}}
+
+% Missions & Spacecraft
+\newcommand{\kepler}{{Kepler}}
+\newcommand{\Kepler}{{Kepler}}
+\newcommand{\corot}{{\it CoRoT}}
+\newcommand{\Ktwo}{{\it K2}}
+\newcommand{\ktwo}{\Ktwo}
+\newcommand{\TESS}{{\it TESS}}
+\newcommand{\tess}{{\it TESS}}
+\newcommand{\LSST}{{\it LSST}}
+\newcommand{\lsst}{{\it LSST}}
+\newcommand{\Wfirst}{{\it WFIRST}}
+\newcommand{\wfirst}{{\it WFIRST}}
+\newcommand{\SDSS}{{\it SDSS}}
+\newcommand{\PLATO}{{\it PLATO}}
+\newcommand{\plato}{{\it PLATO}}
+\newcommand{\Gaia}{{\it Gaia}}
+\newcommand{\gaia}{{\it Gaia}}
+\newcommand{\panstarrs}{{\it PanSTARRS}}
+\newcommand{\LAMOST}{{\it LAMOST}}
+\newcommand{\lamost}{{\it LAMOST}}
+
+% Units and Quantities
+\newcommand{\Teff}{$T_{\mathrm{eff}}$}
+\newcommand{\teff}{$T_{\mathrm{eff}}$}
+\newcommand{\FeH}{[Fe/H]}
+\newcommand{\feh}{[Fe/H]}
+\newcommand{\prot}{$P_{\mathrm{rot}}$}
+\newcommand{\pmega}{$\bar{\omega}$}
+\newcommand{\logg}{log(g)}
+\newcommand{\dnu}{$\Delta \nu$}
+\newcommand{\numax}{$\nu_{\mathrm{max}}$}
+\newcommand{\degrees}{$^\circ$}
+\newcommand{\vx}{$v_{\bf x}$}
+\newcommand{\vy}{$v_{\bf y}$}
+\newcommand{\vz}{$v_{\bf z}$}
+\newcommand{\vb}{$v_{\bf b}$}
+\newcommand{\x}{${\bf x}$}
+\newcommand{\y}{${\bf y}$}
+\newcommand{\z}{${\bf z}$}
+\newcommand{\kms}{kms$^{-1}$}
+\newcommand{\sigmavb}{$\sigma_{v{\bf b}}$}
+\newcommand{\sigmavz}{$\sigma_{v{\bf z}}$}
+\newcommand{\mura}{$\mu_\alpha$}
+\newcommand{\pmra}{$\mu_\alpha$}
+\newcommand{\mudec}{$\mu_\delta$}
+\newcommand{\pmdec}{$\mu_\delta$}
+\newcommand{\parallax}{$\pi$}
+\newcommand{\ra}{$\alpha$}
+\newcommand{\dec}{$\delta$}
+
+% Paper-specific and other
+\newcommand{\logp}{$\log(P_\mathrm{rot})$}
+\newcommand{\gcolor}{$G_{BP} - G_{RP}$}
+\newcommand{\mcp}{\citep{mcquillan2014}}
+\newcommand{\mct}{\citet{mcquillan2014}}
+\newcommand{\sant}{\citet{santos2019}}
+\newcommand{\bvector}{${\bf b}$}
+\newcommand{\python}{{\it Python}}
+\newcommand{\racomment}[1]{{\color{blue}#1}}
+
+% \shorttitle{Calibrating gyrochronology with kinematics}
+% \shortauthors{Angus \etal}
+
+\begin{document}
+
+\title{The 3D velocities and kinematic ages of Kepler stars}
+
+% \correspondingauthor{Ruth Angus}
+% \email{rangus@amnh.org}
+
+\author{Ruth Angus}
+\affiliation{Department of Astrophysics, American Museum of Natural History,
+200 Central Park West, Manhattan, NY, USA}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute,
+162 5th Avenue, Manhattan, NY, USA}
+\affiliation{Department of Astronomy, Columbia University, Manhattan, NY, USA}
+
+\author{Adrian M. Price-Whelan}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute,
+162 5th Avenue, Manhattan, NY, USA}
+
+\author{Dan Foreman-Mackey}
+\affiliation{Center for Computational Astrophysics, Flatiron Institute,
+162 5th Avenue, Manhattan, NY, USA}
+
+\include{abstract}
+
+\keywords{
+Milky Way Dynamics
+}
+
+\include{intro}
+
+\include{method}
+
+\include{results}
+
+\include{discussion}
+
+\include{conclusion}
+
+\include{acknowledgements}
+
+\bibliography{kepkin}{}
+\bibliographystyle{aasjournal}
+
+\end{document}
