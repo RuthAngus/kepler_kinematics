@@ -24,24 +24,32 @@ def load_and_merge_data():
     gaia["dec_6dp"] = np.round(gaia.dec.values, 6)
 
     # Add LAMOST
+    # File created using the LAMOST DR5 website: http://dr5.lamost.org/search
+    lamost = pd.read_csv("../data/gaia-kepler-lamost_snr.csv")
+
+    # Remove one star with a giant LAMOST RV errorbar
+    m = abs(lamost.stellar_rv_err.values) < 100
+    lamost = lamost.iloc[m]
+
+    # Merge Gaia and LAMOST on (rounded) RA and dec
     lamost["ra_6dp"] = lamost.inputobjs_input_ra.values
     lamost["dec_6dp"] = lamost.inputobjs_input_dec.values
     lamost_gaia = pd.merge(gaia, lamost, on=["ra_6dp", "dec_6dp"],
                            how="left", suffixes=["", "_lamost"])
     lamost_gaia = lamost_gaia.drop_duplicates(subset="source_id")
 
-    # Remove one star with a giant LAMOST RV errorbar
-    m = abs(lamost_gaia.stellar_rv_err.values) < 100
-    lamost_gaia = lamost_gaia.iloc[m]
     return lamost_gaia
 
 
 def combine_rv_measurements(df):
+    """LAMOST RVs are overwritten by Gaia RVs
+    """
+
     rv, rv_err = [np.ones(len(df))*np.nan for i in range(2)]
 
-    ml = np.isfinite(df.RV_lam.values)
-    rv[ml] = df.RV_lam.values[ml]
-    rv_err[ml] = df.e_RV_lam.values[ml]
+    ml = np.isfinite(df.stellar_rv.values)
+    rv[ml] = df.stellar_rv.values[ml]
+    rv_err[ml] = df.stellar_rv_err.values[ml]
     print(sum(ml), "stars with LAMOST RVs")
 
     mg = (df.radial_velocity.values != 0)
@@ -112,6 +120,6 @@ if __name__ == "__main__":
     print(len(df), "stars")
 
     print("Saving file")
-    fname = "../kepler_kinematics/gaia_kepler.csv"
+    fname = "../kepler_kinematics/gaia_kepler_lamost.csv"
     print(fname)
     df.to_csv(fname)
