@@ -65,7 +65,7 @@ zsun = 0
 #         mean, cov
 #     """
 #     vel_data = pkg_resources.resource_filename(__name__,
-#                                            "../data/gaia_mc5_velocities.csv")
+#                                            "gaia_kepler_lamost.csv")
 #     vels = pd.read_csv(vel_data)
 #     m = vels.radial_velocity.values != 0
 #     m &= np.isfinite(vels.basic_vx.values)
@@ -87,7 +87,7 @@ def get_prior(cuts="all"):
         mean, cov
     """
     vel_data = pkg_resources.resource_filename(
-        __name__, "mc_san_gaia_lam.csv")
+        __name__, "gaia_kepler_lamost.csv")
     df = pd.read_csv(vel_data)
 
     lnD = np.log(1./df.parallax)
@@ -102,7 +102,7 @@ def get_prior(cuts="all"):
     m = mx & my & mz & md
 
     # vel_data = pkg_resources.resource_filename(
-    #     __name__, "gaia_mc5_velocities.csv")
+    #     __name__, "gaia_kepler_lamost.csv")
     # df = pd.read_csv(vel_data)
     # lnD = np.log(1./df.parallax)
     # df["vx"] = df.basic_vx.values

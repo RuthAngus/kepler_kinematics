@@ -32,17 +32,18 @@ sun_xyz, sun_vxyz, R_gal, galcen_frame = get_solar_and_R_gal()
 # Calculate prior parameters from vx, vy, vz distributions.
 import pkg_resources
 vel_data = pkg_resources.resource_filename(__name__,
-                                           "gaia_mc5_velocities.csv")
+                                           "gaia_kepler_lamost.csv")
 vels = pd.read_csv(vel_data)
-m = vels.radial_velocity.values != 0
-m &= np.isfinite(vels.basic_vx.values)
-m &= np.isfinite(vels.basic_vy.values)
-m &= np.isfinite(vels.basic_vz.values)
+m = (vels.rv.values != 0) & (np.isfinite(vels.rv.values))
+m &= np.isfinite(vels.vx.values)
+m &= np.isfinite(vels.vy.values)
+m &= np.isfinite(vels.vz.values)
 vels = vels.iloc[m]
+print(f"Calculating prior from {len(vels)} stars")
 
 # Calculate covariance between velocities
-VX = np.stack((vels.basic_vx.values, vels.basic_vy.values,
-               vels.basic_vz.values, np.log(1./vels.parallax.values)), axis=0)
+VX = np.stack((vels.vx.values, vels.vy.values,
+               vels.vz.values, np.log(1./vels.parallax.values)), axis=0)
 mean = np.mean(VX, axis=1)
 cov = np.cov(VX)
 
