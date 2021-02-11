@@ -34,7 +34,7 @@ in a pymc3-friendly framework.
 Calls functions in velocities.
 
 *inference.py*: Contains the prior and likelihood function for inferring
-velocities.
+velocities -- but I think it's for emcee. 
 Calls functions in pymc3_functions_one_star, velocities and
 velocity_pm_conversion.
 
