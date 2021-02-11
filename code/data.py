@@ -19,13 +19,21 @@ def load_and_merge_data():
     m = gaia.parallax.values > 0
     gaia = gaia.iloc[m]
 
-    # Add LAMOST RVs
-    lamost = pd.read_csv("../data/KeplerRot-LAMOST.csv")
-    lamost["kepid"] = lamost.KIC.values
-    lam = pd.merge(gaia, lamost, on="kepid", how="left",
-                   suffixes=["", "_lamost"])
-    df = lam.drop_duplicates(subset="kepid")
-    return df
+    # Round RVs down to 6dp.
+    gaia["ra_6dp"] = np.round(gaia.ra.values, 6)
+    gaia["dec_6dp"] = np.round(gaia.dec.values, 6)
+
+    # Add LAMOST
+    lamost["ra_6dp"] = lamost.inputobjs_input_ra.values
+    lamost["dec_6dp"] = lamost.inputobjs_input_dec.values
+    lamost_gaia = pd.merge(gaia, lamost, on=["ra_6dp", "dec_6dp"],
+                           how="left", suffixes=["", "_lamost"])
+    lamost_gaia = lamost_gaia.drop_duplicates(subset="source_id")
+
+    # Remove one star with a giant LAMOST RV errorbar
+    m = abs(lamost_gaia.stellar_rv_err.values) < 100
+    lamost_gaia = lamost_gaia.iloc[m]
+    return lamost_gaia
 
 
 def combine_rv_measurements(df):
