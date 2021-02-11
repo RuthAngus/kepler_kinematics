@@ -10,6 +10,9 @@ import astropy.units as u
 import astropy.coordinates as coord
 
 import kepler_kinematics as kek
+from tools import getDust
+from photometric_teff import bprp_to_teff
+from dustmaps.bayestar import BayestarQuery
 
 
 def load_and_merge_data():
@@ -102,6 +105,64 @@ def add_velocities(df):
     return df
 
 
+# Calculate Absolute magntitude
+def mM(m, D):
+    return 5 - 5*np.log10(D) + m
+
+
+def deredden(df):
+    print("Loading Dustmaps")
+    bayestar = BayestarQuery(max_samples=2, version='bayestar2019')
+
+    print("Calculating Ebv")
+    coords = SkyCoord(df.ra.values*u.deg, df.dec.values*u.deg,
+                    distance=df.r_est.values*u.pc)
+
+    ebv, flags = bayestar(coords, mode='percentile', pct=[16., 50., 84.],
+                        return_flags=True)
+
+    # Calculate Av
+    Av_bayestar = 2.742 * ebv
+    print(np.shape(Av_bayestar), "shape")
+    Av = Av_bayestar[:, 1]
+    Av_errm = Av - Av_bayestar[:, 0]
+    Av_errp = Av_bayestar[:, 2] - Av
+    Av_std = .5*(Av_errm + Av_errp)
+
+    # Catch places where the extinction uncertainty is zero and default to an
+    # uncertainty of .05
+    m = Av_std == 0
+    Av_std[m] = .05
+
+    df["ebv"] = ebv[:, 1]  # The median ebv value.
+    df["Av"] = Av
+    df["Av_errp"] = Av_errp
+    df["Av_errm"] = Av_errm
+    df["Av_std"] = Av_std
+
+    # Calculate dereddened photometry
+    AG, Abp, Arp = getDust(df.phot_g_mean_mag.values,
+                        df.phot_bp_mean_mag.values,
+                        df.phot_rp_mean_mag.values, df.ebv.values)
+
+    df["bp_dered"] = df.phot_bp_mean_mag.values - Abp
+    df["rp_dered"] = df.phot_rp_mean_mag.values - Arp
+    df["bprp_dered"] = df["bp_dered"] - df["rp_dered"]
+    df["G_dered"] = df.phot_g_mean_mag.values - AG
+
+    abs_G = mM(df.G_dered.values, df.r_est)
+    df["abs_G"] = abs_G
+
+    return df
+
+
+def add_phot_teff(df):
+    # Calculate photometric Teff
+    teffs = bprp_to_teff(df.bp_dered - df.rp_dered)
+    df["color_teffs"] = teffs
+    return df
+
+
 if __name__ == "__main__":
     print("Loading data...")
     df = load_and_merge_data()
@@ -117,6 +178,14 @@ if __name__ == "__main__":
 
     print("Calculating velocities")
     df = add_velocities(df)
+    print(len(df), "stars")
+
+    print("Get dust and redenning...")
+    df = deredden(df)
+    print(len(df), "stars")
+
+    print("Calculate photometric temperatures.")
+    df = add_phot_teff(df)
     print(len(df), "stars")
 
     print("Saving file")
