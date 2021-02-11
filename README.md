@@ -75,3 +75,5 @@ NOTEBOOKS
 =========
 
 *Demo_Notebook*: A notebook that demonstrates how to calculate stellar velocities.
+
+*Examining_the_LAMOST_crossmatch*: Looking in detail at the Gaia-LAMOST crossmatch.
