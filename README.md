@@ -38,31 +38,29 @@ velocities -- but I think it's for emcee.
 Calls functions in pymc3_functions_one_star, velocities and
 velocity_pm_conversion.
 
-OTHER CODE
+Other Code
 ====
 
 **code/data.py**: Code for assembling data catalogs, used to calculate Kepler
 velocities and to construct the prior.
 This catalog is called by aviary/pymc3_functions_one_star:
-mc_san_gaia_lam.csv.
+gaia_kepler_lamost.csv.
 
-DATA
+Data
 ====
 
-**/kepler_kinematics/lamost_gaia_kepler.csv**: This file is created by *code/data.py*.
+**/kepler_kinematics/gaia_kepler_lamost.csv**: This file is created by *code/data.py*.
 It is the Gaia-Kepler crossmatch file, combined with LAMOST RVs, and with
 velocities directly calculated from RVs, where available.
 It is used to construct a prior.
 
 Files used in data.py:
 
-**kepler_dr2_1arcsec.fits**: Megan's crossmatched catalog
+**/data/kepler_dr2_1arcsec.fits**: Megan's crossmatched catalog
 
-**gaia_kepler_lamost_snr.csv**: The raw crossmatched file from the LAMOST website. Includes magnitude S/N ratios.
+**/data/gaia-kepler-lamost_snr.csv**: The raw crossmatched file from the LAMOST website. Includes magnitude S/N ratios.
 
-**lamost_gaia_kepler.csv**: The output of data.py
-
-NOTEBOOKS
+Notebooks
 =========
 
 **Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities.
