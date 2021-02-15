@@ -8,8 +8,10 @@ For individual stars, run through Demo_Notebook.ipynb.
 For many stars, follow instructions for running on the cluster below.
 
 * ssh into cluster and navigate to aviary_tests/aviary.
+* The file containing vx, vy, vz and distance that you want to use to construct a prior should be in aviary_tests/aviary/aviary and should be called by pym3_
 * Create a new run_.py file and a new pymc3_multi_star.py or edit the
 get_velocities_general.py.
+* Create a new run_.py file and run_.sh file.
 * Change the upper and lower indices in the run file, depending on how many
 stars you want to run on.
 * Change the directory and data file in code/get_velocities_general.py
@@ -62,6 +64,8 @@ Files used in data.py:
 
 Notebooks
 =========
+
+**Paper_Plots**: A Companion notebook to the paper, producing plots.
 
 **Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities.
 

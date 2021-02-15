@@ -33,34 +33,6 @@ velocities, \vz, using the {\tt coordinates} library of {\tt astropy}
 For the remaining stars we {\it inferred} their vertical velocities by
 marginalizing over their RVs.
 
-Although RVs are available for almost one in three stars in our \kepler\
-rotation sample, very few of the coolest stars have RV measurements because of
-the selection functions of the \gaia\ and \lamost\ surveys.
-In our sample, one in 2.5 stars hotter than 5000 K had RV measurements,
-whereas only one in six stars cooler than 5000 K had RVs.
-\gaia\ DR2 only includes RVs for stars brighter than around 13th magnitude,
-and \lamost\ only provides RVs for \kepler\ stars brighter than around 17th
-magnitude in \gaia\ $G$-band.
-\racomment{Ruth, check the actual LAMOST selection function.}
-Figure \ref{fig:rv_histogram} shows the apparent magnitude and temperature
-distributions of the stars in our sample, with and without RVs.
-This figure reveals the combined selection functions of the \gaia\ DR2 and
-\lamost\ RV surveys and shows that faint and cool stars have fewer RV
-measurements than hot, bright ones.
-\begin{figure}[ht!]
-\caption{
-    The apparent magnitude (left) and temperature (right) distributions of
-    stars in our sample, with and without RV measurements from \gaia\ and
-    \lamost.
-}
-  \centering \includegraphics[width=1\textwidth]{rv_histogram}
-\label{fig:rv_histogram}
-\end{figure}
-Given that rotational evolution is particularly poorly understood for M
-dwarfs, the cool stars with missing RVs are arguably the most interesting.
-To fill-in the low-temperature regime, we inferred velocities for stars
-without RV measurements, by marginalizing over missing RVs.
-
 \subsection{Inferring 3D velocities (marginalizing over missing RV
 measurements)}
 \label{sec:inference}

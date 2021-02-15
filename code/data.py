@@ -29,6 +29,7 @@ def load_and_merge_data():
     # Add LAMOST
     # File created using the LAMOST DR5 website: http://dr5.lamost.org/search
     lamost = pd.read_csv("../data/gaia-kepler-lamost_snr.csv")
+    print(len(lamost), "lamost stars")
 
     # Remove one star with a giant LAMOST RV errorbar
     m = abs(lamost.stellar_rv_err.values) < 100
@@ -187,6 +188,15 @@ if __name__ == "__main__":
     print("Calculate photometric temperatures.")
     df = add_phot_teff(df)
     print(len(df), "stars")
+
+    df = df.drop_duplicates(subset="source_id")
+    grv = (np.isfinite(df.radial_velocity.values)) \
+        & (df.radial_velocity.values != 0)
+    print(sum(grv), "stars with Gaia RVs after cuts")
+    lrv = np.isfinite(df.stellar_rv.values)
+    print(sum(lrv), "stars with LAMOST RVs after cuts")
+    mrv = np.isfinite(df.rv.values)
+    print(sum(mrv), "stars with either rv after cuts")
 
     print("Saving file")
     fname = "../kepler_kinematics/gaia_kepler_lamost.csv"
