@@ -8,6 +8,7 @@ from astropy.io import fits
 from astropy.coordinates import SkyCoord
 import astropy.units as u
 import astropy.coordinates as coord
+from astropy.table import Table
 
 import kepler_kinematics as kek
 from tools import getDust
@@ -42,25 +43,48 @@ def load_and_merge_data():
                            how="left", suffixes=["", "_lamost"])
     lamost_gaia = lamost_gaia.drop_duplicates(subset="source_id")
 
-    return lamost_gaia
+    # Load apogee
+    tbl = Table.read("../data/apogeedr16_stars.fits", format='fits')
+    names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
+    apo = tbl[names].to_pandas()
+
+    apodf = pd.merge(apo, lamost_gaia, how="right", left_on="GAIA_SOURCE_ID",
+                     right_on="source_id")
+    apodf = apodf.drop_duplicates(subset="source_id")
+
+    return apodf
 
 
 def combine_rv_measurements(df):
-    """LAMOST RVs are overwritten by Gaia RVs
+    """
+    Combine RVs from LAMOST, Gaia, and APOGEE into one column,
+
+    LAMOST RVs are overwritten by Gaia RVs, which are overwritten by APOGEE
+    RVS.
     """
 
     rv, rv_err = [np.ones(len(df))*np.nan for i in range(2)]
 
+    # Load LAMOST RVs
     ml = np.isfinite(df.stellar_rv.values)
     rv[ml] = df.stellar_rv.values[ml]
     rv_err[ml] = df.stellar_rv_err.values[ml]
     print(sum(ml), "stars with LAMOST RVs")
 
+    # Overwrite LAMOST RVs with Gaia RVs
     mg = (df.radial_velocity.values != 0)
     mg &= np.isfinite(df.radial_velocity.values)
     rv[mg] = df.radial_velocity.values[mg]
     rv_err[mg] = df.radial_velocity_error.values[mg]
     print(sum(mg), "stars with Gaia RVs")
+
+    # Overwrite Gaia RVs with APOGEE RVs
+    ma = np.isfinite(df.OBSVHELIO_AVG.values)
+    rv[ma] = df.OBSVHELIO_AVG.values[ma]
+    rv_err[ma] = df.OBSVERR.values[ma]
+    print(sum(ma), "stars with APOGEE RVs")
+
+    print(sum(np.isfinite(rv)), "stars with RVs")
 
     df["rv"] = rv
     df["rv_err"] = rv_err
