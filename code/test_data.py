@@ -22,6 +22,6 @@ if __name__ == "__main__":
     df = test_load_and_merge_data()
     rvdf = test_combine_rv_measurements(df)
 
-    si = [f"{i:f}" for i in rvdf.source_id.values]
+    si = [f"{i:.0f}" for i in rvdf.source_id.values]
     names = pd.DataFrame(dict({"source_id": si}))
     names.to_csv("source_ids.csv", index=False)
