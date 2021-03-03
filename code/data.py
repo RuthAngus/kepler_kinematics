@@ -100,6 +100,16 @@ def sn_cuts(df):
     m &= df.astrometric_excess_noise.values < 5
     print(len(df.iloc[m]), "stars after S/N cuts")
 
+    ml = np.isfinite(df.stellar_rv.values)
+    print(sum(ml), "stars with LAMOST RVs after cuts")
+    mg = (df.radial_velocity.values != 0)
+    mg &= np.isfinite(df.radial_velocity.values)
+    print(sum(mg), "stars with Gaia RVs after cuts")
+    ma = np.isfinite(df.OBSVHELIO_AVG.values)
+    print(sum(ma), "stars with APOGEE RVs after cuts")
+
+    print(sum(np.isfinite(rv)), "stars with RVs after cuts in total")
+
     # Jason's wide binary cuts
     # m &= df.astrometric_excess_noise.values > 0
     # m &= df.astrometric_excess_noise_sig.values > 6

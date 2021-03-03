@@ -3,27 +3,40 @@
 
 We used the Kepler-Gaia cross-matched catalog available at gaia-kepler.fun,
 which includes 194764 Kepler targets, cross-matched with Gaia targets within
-in a 1'' radius, and includes distances inferred from Gaia parallaxes
+in a 1'' radius.
+% Using this catalog as a basis, we updated the Gaia parameters to those from
+% EDR3.
+This catalog includes distances inferred from Gaia DR2 parallaxes
 \citep{bailer-jones2018}.
+We elected not to update to Gaia parameters from EDR3 because we used
+distances inferred from DR2 parallaxes to construct our prior
+\citep{bailer-jones2018}.
+In order to keep everything consistent, we therefore had to use DR2 Gaia
+parameters for all our stars.
 % created using the cross-match service and Vizier catalogue access tool
 % provided by CDS, Strasbourg, France, as well as the astroquery and astropy
 % python packages.
-We then crossmatched this catalog with the LAMOST DR5 catalog, also using a
-1'' radius.
+We crossmatched this catalog with the LAMOST DR5 catalog, also using a 1''
+radius.
+We added APOGEE RVs where available, from the DR16 stellar catalog..
 We removed stars with a Gaia parallax $<$ 0, parallax signal-to-noise ratio
 $<$ 10, or Gaia astrometric excess noise $>$ 5.
 After applying these cuts our total number of targets was 178,000 stars:
-28,112 with RVs from Gaia DR2, 37,567 from LAMOST DR5.
-53,397 stars in our sample have RVs from {\it either} Gaia or LAMOST, and
-12,282 have RVs from both.
-The stars in our sample have a median Gaia RV uncertainty of around 1 km/s,
-and a median LAMOST RV uncertainty of around 4 km/s, so we adopted the Gaia
-RVs in cases where stars had both.
+28,112 with RVs from Gaia DR2, 37,567 from LAMOST DR5, and XXX from APOGEE
+DR16.
+In total, 58,397 stars in our sample have RVs from {\it either} Gaia,
+LAMOST, or APOGEE, 12,282 have RVs from two sources, and XXX from all three.
+The APOGEE survey has a higher spectral resolution than Gaia, which is higher
+than LAMOST.
+The median RV uncertainty for stars in our sample is around 0.1 km/s for
+APOGEE RVs, 1 km/s for Gaia RVS, and 4 km/s for LAMOST RVs.
+In cases where stars had two or more available RV measurements, we adopted
+APOGEE RVs first, then Gaia, then LAMOST.
 
 Although RVs are available for more than one in three stars in this \kepler\
 sample, most stars with RVs are bright.
-very few of the coolest stars have RV measurements because of the
-selection functions of the \gaia\ and \lamost\ surveys.
+Very few of the coolest stars have RV measurements because of the selection
+functions of spectroscopic surveys.
 In our sample, one in 2.5 stars hotter than 5000 K had RV measurements,
 whereas only one in six stars cooler than 5000 K had RVs.
 \gaia\ DR2 only includes RVs for stars brighter than around 13th magnitude,
