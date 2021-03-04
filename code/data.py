@@ -265,13 +265,6 @@ if __name__ == "__main__":
     print(len(df), "stars")
 
     df = df.drop_duplicates(subset="source_id")
-    grv = (np.isfinite(df.radial_velocity.values)) \
-        & (df.radial_velocity.values != 0)
-    print(sum(grv), "stars with Gaia RVs after cuts")
-    lrv = np.isfinite(df.stellar_rv.values)
-    print(sum(lrv), "stars with LAMOST RVs after cuts")
-    mrv = np.isfinite(df.rv.values)
-    print(sum(mrv), "stars with either rv after cuts")
 
     print("Saving file")
     fname = "../kepler_kinematics/gaia_kepler_lamost.csv"
