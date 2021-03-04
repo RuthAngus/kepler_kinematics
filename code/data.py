@@ -149,7 +149,7 @@ def sn_cuts(df):
     ma = np.isfinite(df.OBSVHELIO_AVG.values)
     print(sum(ma), "stars with APOGEE RVs after cuts")
 
-    print(sum(np.isfinite(rv)), "stars with RVs after cuts in total")
+    print(sum(np.isfinite(df.rv)), "stars with RVs after cuts in total")
 
     # Jason's wide binary cuts
     # m &= df.astrometric_excess_noise.values > 0
