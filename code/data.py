@@ -34,7 +34,6 @@ def load_and_merge_data():
     # Add LAMOST
     # File created using the LAMOST DR5 website: http://dr5.lamost.org/search
     lamost = pd.read_csv("../data/gaia-kepler-lamost_snr.csv")
-    print(len(lamost), "lamost stars")
 
     # Remove one star with a giant LAMOST RV errorbar
     m = abs(lamost.stellar_rv_err.values) < 100
@@ -58,36 +57,75 @@ def load_and_merge_data():
     return apodf
 
 
+def fit_line(x, y, yerr):
+    AT = np.vstack((np.ones(len(x)), x))
+    C = np.eye(len(x))*yerr
+    CA = np.linalg.solve(C, AT.T)
+    Cy = np.linalg.solve(C, y)
+    ATCA = np.dot(AT, CA)
+    ATCy = np.dot(AT, Cy)
+    w = np.linalg.solve(ATCA, ATCy)
+
+    cov = np.linalg.inv(ATCA)
+    sig = np.sqrt(np.diag(cov))
+    return w, sig
+
+
 def combine_rv_measurements(df):
     """
     Combine RVs from LAMOST, Gaia, and APOGEE into one column,
 
     LAMOST RVs are overwritten by Gaia RVs, which are overwritten by APOGEE
     RVS.
+    LAMOST RVs are called 'stellar_rv, stellar_rv_err',
+    Gaia are called 'radial_velocity, radial_velocity_error',
+    APOGEE are called 'OBSVHELIO_AVG, OBSVERR'.
     """
 
     rv, rv_err = [np.ones(len(df))*np.nan for i in range(2)]
 
-    # Load LAMOST RVs
     ml = np.isfinite(df.stellar_rv.values)
-    rv[ml] = df.stellar_rv.values[ml]
+    mg = np.isfinite(df.radial_velocity.values) & (df.radial_velocity.values != 0)
+    ma = np.isfinite(df.OBSVHELIO_AVG.values)
+    mlmgma = ml & mg & ma
+    mlmg = ml & mg
+    mamg = ma & mg
+
+    # Correct LAMOST RVs
+    x, y = df.radial_velocity.values[mlmg], df.stellar_rv.values[mlmg]-df.radial_velocity.values[mlmg]
+    yerr = df.stellar_rv_err.values[mlmg]
+    w, sig = fit_line(x, y, yerr)
+    lamost_corrected = df.stellar_rv.values - (w[0] + w[1]*df.stellar_rv.values)
+    df["lamost_corrected_rv"] = lamost_corrected
+
+    rv[ml] = lamost_corrected[ml]
     rv_err[ml] = df.stellar_rv_err.values[ml]
     print(sum(ml), "stars with LAMOST RVs")
 
     # Overwrite LAMOST RVs with Gaia RVs
-    mg = (df.radial_velocity.values != 0)
-    mg &= np.isfinite(df.radial_velocity.values)
     rv[mg] = df.radial_velocity.values[mg]
     rv_err[mg] = df.radial_velocity_error.values[mg]
     print(sum(mg), "stars with Gaia RVs")
 
+    # Correct APOGEE RVs
+    # remove outliers
+    tot_err = np.sqrt(df.radial_velocity_error.values[mamg]**2 + df.OBSVERR.values[mamg]**2)
+    ro = abs(df.OBSVHELIO_AVG.values[mamg] - df.radial_velocity.values[mamg]) < 3 * tot_err
+
+    x, y = df.radial_velocity.values[mamg], df.OBSVHELIO_AVG.values[mamg]-df.radial_velocity.values[mamg]
+    yerr = df.OBSVERR.values[mamg]
+    w, sig = fit_line(x, y, yerr)
+    apogee_corrected = df.OBSVHELIO_AVG.values - (w[0] + w[1]*df.OBSVHELIO_AVG.values)
+    df["apogee_corrected_rv"] = apogee_corrected
+
     # Overwrite Gaia RVs with APOGEE RVs
-    ma = np.isfinite(df.OBSVHELIO_AVG.values)
-    rv[ma] = df.OBSVHELIO_AVG.values[ma]
+    rv[ma] = apogee_corrected[ma]
     rv_err[ma] = df.OBSVERR.values[ma]
     print(sum(ma), "stars with APOGEE RVs")
 
     print(sum(np.isfinite(rv)), "stars with RVs")
+    print(sum(mlmg), "with LAMOST and Gaia")
+    print(sum(mlmgma), "with all three")
 
     df["rv"] = rv
     df["rv_err"] = rv_err
