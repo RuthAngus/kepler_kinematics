@@ -6,6 +6,8 @@ import pandas as pd
 
 def test_load_and_merge_data():
     df = d.load_and_merge_data()
+    print(np.shape(df))
+    assert np.shape(df) == (194764, 328)
     return df
 
 def test_combine_rv_measurements(df):
@@ -20,8 +22,4 @@ def test_combine_rv_measurements(df):
 
 if __name__ == "__main__":
     df = test_load_and_merge_data()
-    rvdf = test_combine_rv_measurements(df)
-
-    si = [f"{i:.0f}" for i in rvdf.source_id.values]
-    names = pd.DataFrame(dict({"source_id": si}))
-    names.to_csv("source_ids.csv", index=False)
+    # rvdf = test_combine_rv_measurements(df)
