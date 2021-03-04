@@ -3,6 +3,7 @@ from pyia import GaiaData
 import pandas as pd
 from astropy.table import Table
 import astropy.coordinates as coord
+coord.galactocentric_frame_defaults.set('v4.0')
 import astropy.units as u
 
 from astropy.coordinates.builtin_frames.galactocentric \
