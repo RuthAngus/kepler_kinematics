@@ -15,6 +15,10 @@ from tools import getDust
 from photometric_teff import bprp_to_teff
 from dustmaps.bayestar import BayestarQuery
 
+# Set defaults so they don't change
+import astropy.coordinates as coord
+coord.galactocentric_frame_defaults.set('v4.0')
+
 
 def load_and_merge_data():
     # Load Gaia-Kepler crossmatch.
@@ -49,9 +53,8 @@ def load_and_merge_data():
     apo = tbl[names].to_pandas()
 
     apodf = pd.merge(apo, lamost_gaia, how="right", left_on="GAIA_SOURCE_ID",
-                     right_on="source_id")
+                     right_on="source_id", suffixes=["_apogee", ""])
     apodf = apodf.drop_duplicates(subset="source_id")
-
     return apodf
 
 
