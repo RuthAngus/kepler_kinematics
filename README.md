@@ -10,15 +10,18 @@ For many stars, follow instructions for running on the cluster below.
 * ssh into cluster and navigate to aviary_tests/aviary.
 * The file containing vx, vy, vz and distance that you want to use to construct a prior should be in aviary_tests/aviary/aviary and should be called by pym3_
 * Create a new run_.py file and a new pymc3_multi_star.py or edit the
-get_velocities_general.py.
+    get_velocities_general.py.
 * Create a new run_.py file and run_.sh file.
 * Change the upper and lower indices in the run file, depending on how many
-stars you want to run on.
+    stars you want to run on.
 * Change the directory and data file in code/get_velocities_general.py
 * The data file must contain ra, ra_error, dec, dec_error, parallax,
-parallax_error, pmra, pmra_error, pmdec, pmdec_error.
+    parallax_error, pmra, pmra_error, pmdec, pmdec_error.
 * Create a new .sh file and do module load slurm, sbatch <.sh file>.
 * To watch progress: tail -f slurm-.out
+* assemble_all_results.py combines individual .csv results files into one file.
+* assemble_results.py also calculates proper motions from the inferred RVs.
+
 
 kepler_kinematics
 ======

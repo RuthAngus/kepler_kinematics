@@ -89,7 +89,8 @@ def get_prior(cuts="all"):
         __name__, "gaia_kepler_lamost.csv")
     df = pd.read_csv(vel_data)
 
-    lnD = np.log(1./df.parallax)
+    # lnD = np.log(1./df.parallax)
+    lnD = np.log(df.r_est.values * 1e-3)
     finite = np.isfinite(df.vx.values) & np.isfinite(df.vy.values) \
         & np.isfinite(df.vz.values) & np.isfinite(lnD)
 
