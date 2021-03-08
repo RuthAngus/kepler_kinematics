@@ -1,18 +1,26 @@
 \section{Introduction}
 
+Gaia has revolutionized Galactic dynamics by providing precise positions and
+proper motions for billions of Milky Way stars.
+It also provided radial velocity (RV) measurements for N stars in its second
+data release.
+Proper motions and RVs combined provides the full 3-dimensional velocity
+vector for any given star, which can reveal its Galactic orbit.
+Without an RV measurement however, the 3D velocity of a star can still be
+inferred.
+For example, ....
+
 % Motivation
-Main-sequence dwarfs are the most common stars in the Milky Way, and their
-ages could reveal the evolution of Galactic stellar populations and planetary
-systems.
-However, the ages of low-mass stars, particularly K and M dwarfs are difficult
-to measure because their luminosities and temperatures evolve slowly on the
-main sequence \citep[see][for a review of stellar ages]{soderblom2010}.
+One of our main purposes in calculating the velocities of Kepler stars is to
+use Galactic kinematics to date them \citep[\eg][]{angus2020, lu2021}.
+The ages of stars, particularly GKM stars on the main sequence, are difficult
+to measure because their luminosities and temperatures evolve slowly
+\citep[see][for a review of stellar ages]{soderblom2010}.
 Empirical models that relate the magnetic activity or rotation periods of
 stars to their age can be used to infer the ages of some low-mass dwarfs
-\citep{citations}.
-However, these empirical relations are often poorly calibrated for K and M
-dwarfs and old stars \citep{citations}.
-Galactic kinematics provide an alternative dating method.
+\citep{citations}, however, these empirical relations are often poorly
+calibrated for K and M dwarfs and old stars \citep{citations}.
+Galactic kinematics provides an alternative, statistical dating method.
 
 The star forming molecular gas clouds observed in the Milky Way have a low
 out-of-plane, or vertical, velocity \citep[\eg][]{stark1989, stark2005,
@@ -33,24 +41,28 @@ power law: $\sigma_v \propto t^\beta$, with free parameter, $\beta$
 \citep[\eg][]{holmberg2009, yu2018}.
 These expressions can be used to infer the ages of groups of stars from their
 velocity dispersions.
+However, AVRs are usually calibrated in 3D Galactocentric velocities -- most
+commonly in \vz\ or W.
+Regardless of the coordinate system, some transformation from proper motion in
+RA and dec is currently required to calculate the kinematic ages of stars.
 
-Kinematic ages have been used to explore the evolution of cool dwarfs for over
-a decade.
-For example, \citet{west2004, west2006} found that the fraction of
-magnetically active M dwarfs decreases over time, by using the vertical
-distances of stars from the Galactic mid-plane as an age proxy, and
-\citet{west2008} used kinematic ages to calculate the expected activity
-lifetime for M dwarfs of different spectral types.
-\citet{faherty2009} used tangential velocities to infer the ages of M, L and T
-dwarfs, and showed that dwarfs with lower surface gravities tended to be
-kinematically younger, and \citet{kiman2019} used velocity dispersion as an
-age proxy to explore the evolution of H$\alpha$ equivalent width (a magnetic
-activity indicator), in M dwarfs.
-In \citet{angus2020} we explored the kinematic properties of Kepler field
-stars and found that the velocity dispersion of stars increase with stellar
-rotation period, as expected (because both quantities increase with age).
-In \citet{lu2021} we used the velocity dispersions of Kepler field stars to
-estimate their ages using an Age-Velocity dispersion Relation (AVR).
+% Kinematic ages have been used to explore the evolution of cool dwarfs for over
+% a decade.
+% For example, \citet{west2004, west2006} found that the fraction of
+% magnetically active M dwarfs decreases over time, by using the vertical
+% distances of stars from the Galactic mid-plane as an age proxy, and
+% \citet{west2008} used kinematic ages to calculate the expected activity
+% lifetime for M dwarfs of different spectral types.
+% \citet{faherty2009} used tangential velocities to infer the ages of M, L and T
+% dwarfs, and showed that dwarfs with lower surface gravities tended to be
+% kinematically younger, and \citet{kiman2019} used velocity dispersion as an
+% age proxy to explore the evolution of H$\alpha$ equivalent width (a magnetic
+% activity indicator), in M dwarfs.
+% In \citet{angus2020} we explored the kinematic properties of Kepler field
+% stars and found that the velocity dispersion of stars increase with stellar
+% rotation period, as expected (because both quantities increase with age).
+% In \citet{lu2021} we used the velocity dispersions of Kepler field stars to
+% estimate their ages using an Age-Velocity dispersion Relation (AVR).
 
 AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
 \vz\ or $UVW$), and these velocities can only be calculated with full 6D
