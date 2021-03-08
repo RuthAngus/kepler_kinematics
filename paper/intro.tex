@@ -1,18 +1,58 @@
 \section{Introduction}
 
-Gaia has revolutionized Galactic dynamics by providing precise positions and
-proper motions for billions of Milky Way stars.
-It also provided radial velocity (RV) measurements for N stars in its second
-data release.
-Proper motions and RVs combined provides the full 3-dimensional velocity
-vector for any given star, which can reveal its Galactic orbit.
-Without an RV measurement however, the 3D velocity of a star can still be
-inferred.
-For example, ....
+Gaia has revolutionized the field of Galactic dynamics by providing precise
+positions and proper motions for an unprecendented number of stars in the
+Milky Way.
+So far, Gaia has provided positions and proper motions for billions of stars ,
+and radial velocities (RVs) for more than 7 million stars across its 1st, 2nd and
+early-3rd data releases \citep{gaia, gaia_dr2}.
+Combined, proper motion, position, and RV measurements provide the full
+3-dimensional velocity vector for any given star.
+3D stellar velocities are useful for calculating the relative space-motions of
+stars, and for revealing their Galactic orbits.
+The orbits of stars can be used to explore the secular dynamical evolution of
+the Galaxy, for example by studying vertical heating and radial migration
+\citep{citations}.
+Stellar orbits can also help differentiate nascent and accreted stellar
+populations in the Milky Way's halo \citep{citation}.
+
+RV measurements, combined with proper motions, are extremely useful as they
+complete the full picture of 3D stellar velocity.
+However, RV measurements can only be calculated with a stellar spectrum -- an
+observation requiring more photons than are needed for photometry or
+astrometry.
+RVs are therefore difficult to obtain for faint stars.
+Fortunately however, Gaia proper motion measurements are of such incredible
+precision that, even without an RV measurement, the 3D velocity of a star can
+still be inferred by marginalizing over radial velocity.
+This will often provide a velocity that is not equally well-constrained in
+every direction, \ie\ the probability density function of a star's velocity
+will be an oblate spheroid in 3D.
+In the equatorial coordinate system, a star's velocity will be tightly
+constrained the RA and dec directions, and only constrained by the prior in
+the radial direction.
+Transforming to any other coordinate system, a star's velocity probability
+density function will change shape in a way that depends on its position.
+
+There are several applications for which the 3D velocity of a star is useful,
+even if its velocity is not equally well-constrained in every direction.
+For example, \citet{oh2017} used Gaia proper motions to identify comoving
+pairs and groups of stars and marginalized over missing RVs.
+In some cases, the velocities of stars in particular directions are more
+useful than others, for example, the {\it vertical} velocities of stars (\vz\
+or $W$) are often used to study the secular orbital heating of stars in the
+Milky Way's disk \citep[\eg][]{ting2019, beane2018, yu2018, citations}.
+Unless the radial velocity direction precisely coincides with the vertical
+axis of the Milky Way, \ie\ a star lies along the $Z$ axis of the
+Galactocentric coordinate system, we can still extract some \vz\ information
+from Gaia proper motions alone.
+Of course, the lower the Galactic latitude of a star, the better the
+constraint on its \vz\ will be (hence why the Kepler field, located at low
+latitude, is particularly useful for vertical velocity studies).
 
 % Motivation
 One of our main purposes in calculating the velocities of Kepler stars is to
-use Galactic kinematics to date them \citep[\eg][]{angus2020, lu2021}.
+use Galactic kinematics to date them.
 The ages of stars, particularly GKM stars on the main sequence, are difficult
 to measure because their luminosities and temperatures evolve slowly
 \citep[see][for a review of stellar ages]{soderblom2010}.
@@ -46,6 +86,42 @@ commonly in \vz\ or W.
 Regardless of the coordinate system, some transformation from proper motion in
 RA and dec is currently required to calculate the kinematic ages of stars.
 
+AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
+\vz\ or $UVW$), and these velocities can only be calculated with full 6D
+positional and velocity information, however most \kepler\ rotators do not
+have RV measurements\footnote{Although RVs for most will be released in \gaia\
+DR3}.
+% In \citep{angus2020} we used velocity in the direction of Galactic latitude
+% (\vb) as a stand-in for \vz\ because, in the {\it Galactic} coordinate system,
+% velocities can be calculated from 3D positions and {\it 2D} proper motions.
+% The \kepler\ field lies at low Galactic latitude, so \vb\ is a close
+% approximation to \vz\ for Kepler stars.
+% Although \vb\ velocity dispersion does not equal \vz\ velocity dispersion, it
+% still increases monotonically over time and provides accurate age rankings for
+% \kepler\ stars.
+% In this paper however, we calculate or infer \vz\ for each Kepler star in our
+% sample.
+% For stars without RV measurements we infer {\it vertical} velocity, \vz, by
+% marginalizing over missing RVs using a hierarchical Bayesian model.
+% The vertical velocities presented in this paper were used by \citet{lu2021} to
+% calculate the velocity dispersions of groups of stars with similar properties,
+% which they then converted into ages using an AVR \citep{yu2018}.
+% In this work, we extend the work of \citet{lu2021} by applying their kinematic
+% dating method to stars with marginal rotation period detections in the Kepler
+% field \citep{mcquillan2014}.
+% % We compare the kinematic ages of stars with and without rotation period
+% % detections, and those with marginal detections.
+In \citet{angus2020} we used the velocities of Kepler stars in the direction
+of Galactic latitude, \vb\, as a proxy for vertical velocity, \vz\ (the Kepler
+field is oriented at low Galactic latitude and \vb\ is therefore similar to
+\vz).
+We used the velocity dispersions of stars as an age proxy, to explore the
+evolution of stellar rotation rates.
+In \citet{lu2021} we used vertical velocity dispersion to calculate kinematic
+ages for Kepler stars with measured rotation periods using an AVR.
+Those vertical velocities were inferred by marginalizing over RVs using the
+method we describe in this paper.
+
 % Kinematic ages have been used to explore the evolution of cool dwarfs for over
 % a decade.
 % For example, \citet{west2004, west2006} found that the fraction of
@@ -63,32 +139,6 @@ RA and dec is currently required to calculate the kinematic ages of stars.
 % rotation period, as expected (because both quantities increase with age).
 % In \citet{lu2021} we used the velocity dispersions of Kepler field stars to
 % estimate their ages using an Age-Velocity dispersion Relation (AVR).
-
-AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
-\vz\ or $UVW$), and these velocities can only be calculated with full 6D
-positional and velocity information, however most \kepler\ rotators do not
-have RV measurements\footnote{Although RVs for most will be released in \gaia\
-DR3}.
-In \citep{angus2020} we used velocity in the direction of Galactic latitude
-(\vb) as a stand-in for \vz\ because, in the {\it Galactic} coordinate system,
-velocities can be calculated from 3D positions and {\it 2D} proper motions.
-The \kepler\ field lies at low Galactic latitude, so \vb\ is a close
-approximation to \vz\ for Kepler stars.
-Although \vb\ velocity dispersion does not equal \vz\ velocity dispersion, it
-still increases monotonically over time and provides accurate age rankings for
-\kepler\ stars.
-In this paper however, we calculate or infer \vz\ for each Kepler star in our
-sample.
-For stars without RV measurements we infer {\it vertical} velocity, \vz, by
-marginalizing over missing RVs using a hierarchical Bayesian model.
-The vertical velocities presented in this paper were used by \citet{lu2021} to
-calculate the velocity dispersions of groups of stars with similar properties,
-which they then converted into ages using an AVR \citep{yu2018}.
-In this work, we extend the work of \citet{lu2021} by applying their kinematic
-dating method to stars with marginal rotation period detections in the Kepler
-field \citep{mcquillan2014}.
-We compare the kinematic ages of stars with and without rotation period
-detections, and those with marginal detections.
 
 This paper is laid out as follows.
 In section \ref{sec:method} we describe how we calculate the kinematic ages of
