@@ -68,6 +68,14 @@ Files used in data.py:
 Notebooks
 =========
 
+**Plot_prior_distributions_2D**: The prior_distributions_2D.pdf plot in the paper.
+
+**Plot_prior_distributions_2D**: The prior_distributions_2D.pdf plot in the paper.
+
+**Plot_kepler_field**: The kepler_field.pdf plot in the paper.
+
+**Plot_CMD**: The CMD.pdf plot in the paper.
+
 **Paper_Plots**: A Companion notebook to the paper, producing plots.
 
 **Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities.
