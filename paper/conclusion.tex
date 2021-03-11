@@ -1,9 +1,54 @@
 \section{Conclusion}
 
-% Summarise motivation
+This paper describes a method for inferring the 3D velocities of stars by
+marginalizing over missing radial velocity measurements.
+We focused on stars in the Kepler field, because of its potential for studying
+stellar evolution via kinematic age-dating, and because of its particular
+orientation.
+Located at low Galactic latitude, the Kepler field is almost aligned with the
+$y$-axis of the Galactocentric coordinate system.
+This means that 2D Gaia proper motion measurements alone are sufficient to
+tightly constrain the \vx\ and \vz\ velocities of Kepler stars.
+Without RV measurements however, the \vy\ velocities  of Kepler stars are
+poorly constrained.
+However, given that many age-velocity dispersion relations (AVR) are
+calibrated in {\it vertical} velocity, \vz\ is the main parameter of interest
+for kinematic age-dating.
 
-% Summarise method
+We compiled crossmatches of the Kepler, Gaia EDR3, LAMOST DR5 and APOGEE DR16
+catalogs.
+Gaia EDR3 provided parallaxes, positions and proper motions for the stars in
+our sample, and Gaia DR2 provided RVs for XXX stars.
+LAMOST DR5 provided XXX RVs for stars in our sample, and APOGEE DR16 provided
+XXX.
+Of the three spectroscopic surveys, APOGEE has the highest resolution,
+followed by Gaia, then LAMOST, so we adopted RVs in that priority-order
+where stars had multiple RV measurements available.
 
-% Summarise results
+We calculated \vx, \vy, and \vz\ for the XXX stars in our sample with RVs
+using {\tt astropy}.
+For the remaining XXX stars, we {\it inferred} \vx, \vy, \vz, and distance
+while marginalizing over RV.
+Our prior was a 4D Gaussian in \vx, \vy, \vz\ and $\ln$(distance), which was
+based on the distribution of stars in our sample {\it with} RVs.
+Since the populations of stars with and without RVs in the Kepler field are
+somewhat different -- stars {\it with} RVs are generally brighter than stars
+without -- we tested the sensitivity of our results to the prior.
+We split the subsample of stars with measured RVs into two further subgroups:
+stars brighter and stars fainter than 13th magnitude in Gaia $G$-band (13th
+being the median magnitude of the Kepler stars with RVs).
+Priors were constructed from the faint and bright halves of the sample and
+used to infer the velocities of 1000 stars randomly selected from the total RV
+sample.
+Upon examination, we found the final inferred velocities were similar,
+irrespective of the prior.
+As expected, \vx\ and \vz\ depend very little on the prior but \vy\ has a
+stronger prior-dependence because it is difficult to constrain without an RV
+for Kepler stars.
+A caveat of our inferred velocities is therefore that the \vy\ velocities may
+not be accurate for faint stars in the Kepler field.
 
-% Summarise future
+We provide a table of \vx, \vy, \vz, and $\ln$(distance) for a total of XXX
+stars observed by Kepler.
+This table also contains the positional and velocitiy information from Gaia
+DR2, Gaia EDR3, LAMOST DR5, and APOGEE DR16.

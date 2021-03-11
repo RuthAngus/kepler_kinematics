@@ -257,8 +257,6 @@ distributions of all stars with RV measurements (black Gaussians in figure
 % \label{fig:prior_distributions}
 % \end{figure}
 
-\subsection{Inferred velocities}
-
 For each star in the \kepler\ field, we explored the posteriors of the four
 parameters, \vx, \vy, \vz, and $\ln(D)$ using the {\it PyMC3} No U-Turn
 Sampler (NUTS) algorithm, and the {\tt exoplanet} \python\ library
@@ -269,28 +267,3 @@ Using PyMC3 made the inference procedure exceptionally fast -- taking just a
 few seconds per star on a laptop.
 \racomment{Check what convergence criteria you should use, or justify these
 choices.}
-
-To validate our method, we inferred velocities for stars in our sample with
-measured RVs and compared those inferred values with velocities calculated
-directly from 6D position, proper motion, and RV measurements.
-Figure \ref{fig:residuals} shows the \vx, \vy\ and \vz\ velocities we
-inferred, for 3000 stars chosen at random, compared with those calculated from
-measured RVs.
-\begin{figure}[ht!]
-\caption{Vertical velocities calculated with full 6D information vs vertical
-    velocities inferred without RVs, for 3000 \mct\ stars with \gaia\ RV
-    measurements.}
-  \centering
-    \includegraphics[width=1\textwidth]{residuals}
-\label{fig:residuals}
-\end{figure}
-
-The three velocity components, \vx, \vy\ and \vz\ were recovered with
-differing levels of precision: \vx\ and \vz\ are inferred more precisely than
-\vy.
-This is because of the orientation of the \kepler\ field, shown in figure
-\ref{fig:kepler_field}.
-\racomment{Slight inaccuracies seen in the residual panels for \vx\ and \vz\
-are caused by ....
-Quote some summary statistics.}
-

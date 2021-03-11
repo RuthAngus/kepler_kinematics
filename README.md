@@ -68,6 +68,8 @@ Files used in data.py:
 Notebooks
 =========
 
+**Plot_rv_histogram**: The rv_histogram.pdf plot in the paper.
+
 **Plot_residuals**: The residuals.pdf plot in the paper.
 
 **Plot_prior_comparison**: The prior_comparison.pdf plot in the paper.
