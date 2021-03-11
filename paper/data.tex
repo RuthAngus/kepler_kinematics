@@ -4,9 +4,7 @@
 We used the Kepler-Gaia cross-matched catalog available at gaia-kepler.fun,
 which includes 194764 Kepler targets, cross-matched with Gaia targets within
 in a 1'' radius.
-% Using this catalog as a basis, we updated the Gaia parameters to those from
-% EDR3.
-This catalog includes Gaia positions, parallaxes, and proper distances from
+This catalog includes Gaia positions, parallaxes, and proper motions from
 Gaia EDR3 and RVs from Gaia DR2.
 It also includes distances inferred from Gaia EDR3 parallaxes
 \citep{bailer-jones2020}.
@@ -23,8 +21,8 @@ After applying these cuts our total number of targets was 178,000 stars:
 DR16.
 In total, 58,397 stars in our sample have RVs from {\it either} Gaia,
 LAMOST, or APOGEE, 12,282 have RVs from two sources, and XXX from all three.
-The APOGEE survey has a higher spectral resolution than Gaia, which is higher
-than LAMOST.
+The APOGEE survey has a higher spectral resolution than Gaia, which in turn is
+higher than LAMOST.
 The median RV uncertainty for stars in our sample is around 0.1 km/s for
 APOGEE RVs, 1 km/s for Gaia RVS, and 4 km/s for LAMOST RVs.
 In cases where stars had two or more available RV measurements, we adopted
@@ -32,7 +30,7 @@ APOGEE RVs as a first priority, followed by Gaia, then LAMOST.
 
 Although RVs are available for more than one in three stars in this \kepler\
 sample, most stars with RVs are bright.
-Very few of the coolest stars have RV measurements because of the selection
+Very few of the faintest stars have RV measurements because of the selection
 functions of spectroscopic surveys.
 % In our sample, one in 2.5 stars hotter than 5000 K had RV measurements,
 % whereas only one in six stars cooler than 5000 K had RVs.
@@ -57,6 +55,19 @@ bright ones.
   \centering \includegraphics[width=.5\textwidth]{rv_histogram}
 \label{fig:rv_histogram}
 \end{figure}
+
+To illustrate how the populations of stars with and without RVs differ, we
+plot them on a color-magnitude diagram (CMD) in figure \ref{fig:CMD}.
+The stars with RVs are generally hotter and more luminous than stars without.
+Most stars with RVs fall on the upper main sequence, the red giant branch, and
+the red clump.
+Most stars without RVs fall on the main sequence.
+This overall selection function is a combination of the APOGEE, LAMOST and
+Gaia DR2 selection functions.
+The Gaia DR2 selection function is primarily a cut in apparent Gaia $G$-band
+magnitude.
+The LAMOST selection function is...
+The APOGEE selection function is...
 \begin{figure}[ht!]
 \caption{
     The color-temperature diagram of stars in the Kepler field with (left)
@@ -69,7 +80,3 @@ bright ones.
   \centering \includegraphics[width=1\textwidth]{CMD}
 \label{fig:CMD}
 \end{figure}
-Given that rotational evolution is particularly poorly understood for M
-dwarfs, the cool stars with missing RVs are arguably the most interesting.
-To fill-in the low-temperature regime, we inferred velocities for stars
-without RV measurements, by marginalizing over missing RVs.

@@ -1,37 +1,35 @@
 \section{Stellar Velocities}
 \label{sec:velocities}
 
-In this section we describe how we calculated full 3D velocities for the field
-stars in our sample, which were then used to calculate kinematic ages using
-the method described in \citet{lu2021}.
-
+In this section we describe how we calculated full 3D velocities for stars in
+the Kepler field.
+Around 1 in 2 stars in the Kepler field have an RV from either Gaia, LAMOST,
+or APOGEE.
+For these XXX stars we calculated 3D velocities using the {\tt coordinates}
+library of {\tt astropy} \citep{astropy2013, astropy2018}.
+For the remaining stars we {\it inferred} their vertical velocities by
+marginalizing over their RVs.
 % It has been demonstrated that the dispersion in vertical velocity, \vz, of a
 % population of stars increases with the age of that population,
 % \citep[\eg][]{stromberg1946, wielen1977, nordstrom2004, holmberg2007,
 % holmberg2009, aumer2009, casagrande2011, ting2019, yu2018}.
-Most AVRs are calibrated using velocities in Galactocentric coordinates, \vx,
-\vy\ and \vz, which can only be calculated with full 6-D position and velocity
-information, \ie\ proper motions, position and radial velocity.
-In \citet{angus2020} we explored rotational evolution using velocity
-dispersion as an age proxy, however we used velocity in the direction of
-Galactic latitude, \vb, instead of \vz.
-This is because \vb\ can be calculated without an RV measurement but is a
-close approximation to \vz\ for \kepler\ stars due to the orientation of the
-Kepler field.
-The \kepler\ field lies at low Galactic latitudes, ($\sim 5-20$\degrees), so
-the ${\bf z}$-direction is similar to the ${\bf b}$-direction for \kepler\
-stars.
-However, even at such low latitudes, kinematic ages calculated with \vb\
-instead of \vz\ are likely to be systematically larger because of mixing
-between \vz, \vx\ and \vy.
-A direct measurement or precise estimate of \vz\ is necessary to calculate
-accurate kinematic ages.
-Less than 1 in 3 stars in our sample of \kepler\ rotators have a directly
-measured RV available, and for these $\sim$11,000 stars we calculated vertical
-velocities, \vz, using the {\tt coordinates} library of {\tt astropy}
-\citep{astropy2013, astropy2018}.
-For the remaining stars we {\it inferred} their vertical velocities by
-marginalizing over their RVs.
+% Most AVRs are calibrated using velocities in Galactocentric coordinates, \vx,
+% \vy\ and \vz, which can only be calculated with full 6-D position and velocity
+% information, \ie\ proper motions, position and radial velocity.
+% In \citet{angus2020} we explored rotational evolution using velocity
+% dispersion as an age proxy, however we used velocity in the direction of
+% Galactic latitude, \vb, instead of \vz.
+% This is because \vb\ can be calculated without an RV measurement but is a
+% close approximation to \vz\ for \kepler\ stars due to the orientation of the
+% Kepler field.
+% The \kepler\ field lies at low Galactic latitudes, ($\sim 5-20$\degrees), so
+% the ${\bf z}$-direction is similar to the ${\bf b}$-direction for \kepler\
+% stars.
+% However, even at such low latitudes, kinematic ages calculated with \vb\
+% instead of \vz\ are likely to be systematically larger because of mixing
+% between \vz, \vx\ and \vy.
+% A direct measurement or precise estimate of \vz\ is necessary to calculate
+% accurate kinematic ages.
 
 \subsection{Inferring 3D velocities (marginalizing over missing RV
 measurements)}
