@@ -101,17 +101,6 @@ def get_prior(cuts="all"):
     md = ss.sigma_clip(lnD[finite], nsigma=nsigma)
     m = mx & my & mz & md
 
-    # vel_data = pkg_resources.resource_filename(
-    #     __name__, "gaia_kepler_lamost.csv")
-    # df = pd.read_csv(vel_data)
-    # lnD = np.log(1./df.parallax)
-    # df["vx"] = df.basic_vx.values
-    # df["vy"] = df.basic_vy.values
-    # df["vz"] = df.basic_vz.values
-    # finite = np.isfinite(df.vx.values) & np.isfinite(df.vy.values) \
-    #     & np.isfinite(df.vz.values) & np.isfinite(lnD)
-    # m = np.isfinite(df.vx.values[finite])
-
     gmag = df.phot_g_mean_mag.values[finite][m]
     m_faint = gmag > 13.
     m_bright = gmag < 13.
