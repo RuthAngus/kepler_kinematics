@@ -113,8 +113,8 @@ def get_prior(cuts="all"):
     # m = np.isfinite(df.vx.values[finite])
 
     gmag = df.phot_g_mean_mag.values[finite][m]
-    m_faint = gmag > 13.56
-    m_bright = gmag < 13.56
+    m_faint = gmag > 13.
+    m_bright = gmag < 13.
 
     if cuts == "all":  # No faint or bright cuts on the prior.
         mu, cov = mean_and_var(df.vx.values[finite][m],
