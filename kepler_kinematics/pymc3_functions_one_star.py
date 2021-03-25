@@ -6,6 +6,7 @@ import pandas as pd
 import theano.tensor as tt
 import pymc3 as pm
 import exoplanet as xo
+import pymc3_ext as pmx
 
 import starspot as ss
 
@@ -265,8 +266,8 @@ def run_pymc3_model(pos, pos_err, proper, proper_err, mean, cov):
         pm.Normal("parallax", mu=1. / D, sigma=pos_err[2], observed=pos[2])
 
         map_soln = xo.optimize()
-        trace = pm.sample(tune=1500, draws=1000, start=map_soln,
-                          step=xo.get_dense_nuts_step(target_accept=0.9))
+        trace = pmx.sample(tune=1500, draws=1000, start=map_soln,
+                           return_inferencedata=True)
 
     return trace
 
