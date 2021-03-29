@@ -96,10 +96,10 @@ Sampler (NUTS) algorithm, and the {\tt exoplanet} \python\ library
 \racomment{(citations)}.
 We tuned the {\it PyMC3} sampler for 1500 steps, with a target acceptance
 fraction of 0.9, then ran four chains of 1000 steps for a total of 4000 steps.
-Using PyMC3 made the inference procedure exceptionally fast -- taking just a
+This resulted in a $\hat{r}$-statistic (the ratio of intra-chain to
+inter-chain variance) of around unity, indicating convergence.
+Using PyMC3 made this inference procedure exceptionally fast -- taking just a
 few seconds per star on a laptop.
-\racomment{Check what convergence criteria you should use, or justify these
-choices.}
 
 \subsection{The prior}
 \label{sec:prior}

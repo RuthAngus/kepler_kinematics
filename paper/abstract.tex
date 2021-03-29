@@ -2,35 +2,39 @@
 Precise Gaia measurements of positions, parallaxes, and proper motions provide
     an opportunity to measure the two-dimensional velocities of Milky Way
    stars.
-Where available, radial velocity (RV) measurements from spectroscopic surveys
-    provide an opportunity to calculate {\it three}-dimensional stellar
-    velocities, which could reveal the orbital properties and kinematic
-    ages of Galactic stellar populations.
+Where available, spectroscopic radial velocity (RV) measurements provide an
+    opportunity to calculate {\it three}-dimensional stellar velocities.
+    % , which
+    % could reveal the orbital properties and kinematic ages of Galactic stellar
+    % populations.
 Gaia will provide RVs for stars as faint as the 15th magnitude in its third
     data release, however there are now and will remain many stars without RV
     measurements.
-Without an RV, it is still possible to infer full three-dimensional stellar
+Without an RV it is not possible to directly calculate 3D stellar velocities,
+    however it is still possible to {\it infer} full three-dimensional stellar
     velocities by marginalizing over the missing RV dimension.
-In this paper, we calculate the three-dimensional velocities of stars in the
-    Kepler field in Galactocentric coordinates (\vx, \vy, \vz).
-We use RV measurements from the Gaia, LAMOST and APOGEE spectroscopic surveys
-    where available, and otherwise marginalize over missing RV measurements.
+In this paper, we calculate and infer the three-dimensional velocities of
+    stars in the Kepler field in Galactocentric coordinates (\vx, \vy, \vz).
+Where available, we use RV measurements from the Gaia, LAMOST and APOGEE
+    spectroscopic surveys, and otherwise marginalize over missing RV
+    measurements.
 Lying at a low Galactic latitude, the Kepler field is oriented close to the
     y-axis of the Galactocentric coordinate system.
 This means that, without an RV, \vy\ is poorly constrained but \vx\ and \vy\
     can be precisely inferred.
 The median uncertainties on our inferred \vx, \vy, and \vz\ velocities are
-    XXX, XXX, and XXX kms$^{-1}$, respectively.
+    around \vxprecision, \vyprecision, and \vzprecision\ kms$^{-1}$,
+    respectively.
 For many applications, including kinematic age-dating, precise velocities in
     the \vz\ and \vx\ directions are sufficiently useful.
-We provide a total of 3D velocities for XXX stars in the Kepler field,
-    calculated with and without RV measurements.
-This method,
-    applied in different parts of the sky, will result in a different mix of
-    precision distributed across the \vx, \vy, and \vz\ dimensions.
-However, although our methodology is broadly applicable to targets across the
+We provide a total of 3D velocities for \nstars\ stars in the Kepler field,
+    with and without RV measurements.
+% This method, applied in different parts of the sky, will result in a different
+%     mix of precision distributed across the \vx, \vy, and \vz\ dimensions.
+% However,
+Although the methodology used here is broadly applicable to targets across the
     sky, our prior is specifically constructed from and for the Kepler field.
-Care should be taken therefore, when applying this method to other parts of
-    the Galaxy, that a suitable prior is used.
+Care should be taken to use a suitable prior when applying this method to
+    other parts of the Galaxy.
 \end{abstract}
 

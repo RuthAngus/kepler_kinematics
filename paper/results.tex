@@ -3,6 +3,55 @@
 
 \subsection{Inferred velocities}
 
+Figure \ref{fig:results} shows the inferred velocities of 5000 randomly
+selected Kepler stars.
+The 2D distributions of inferred stellar velocities are plotted in the
+lower-left panels, with black contours indicating the stellar number density.
+The orange contours in these panels show the marginal projections of the
+Gaussian prior in 2D.
+The upper right panels in the figure, lying on the diagonal plot, show the 1D
+distributions (histograms) of stellar velocities.
+The black histogram shows the distribution of inferred velocities, the blue
+histogram shows the distribution of velocities, calculated for stars with RVs,
+and the orange lines show the 1D marginal Gaussian prior distributions.
+This figure shows that the velocity distributions of stars calculated with and
+without RVs are broadly similar.
+The prior distribution is calculated using the velocities of stars with RVs.
+If the velocity distributions of stars were Gaussian, the 1D orange Gaussians
+would look like the blue histograms.
+In other words, the differences between the orange lines and blue histograms
+is caused by the non-Gaussianity of the velocity distributions.
+
+Among stars with measured RVs, \vy\ and \vz\ are slightly positively
+correlated: stars with larger \vy\ tend to have larger \vz.
+However, the inferred velocities have the opposite trend: stars with larger
+\vy\ have a smaller \vz.
+This difference is caused by the slight degeneracy between \vy\ and \vz\ for
+stars that do not have RVs.
+The proper motions of stars with a given \vy\ and \vz\ could be equally
+well-described with a slightly larger \vy\ and a smaller \vz\ or vice versa.
+
+\begin{figure}[ht!]
+\caption{
+The distribution of inferred stellar velocities and distances.
+    Figure \ref{fig:results} shows the inferred velocities of 5000 randomly
+selected Kepler stars.
+The 2D distributions of inferred stellar velocities are plotted in the
+lower-left panels, with black contours indicating the stellar number density.
+The orange contours in the lower-left panels show the marginal projections of
+    the Gaussian prior distribution in 2D.
+The upper-right panels in the figure, lying on the plot's diagonal, show the
+    1D distributions (histograms) of stellar velocities.
+The black histogram shows the distribution of inferred velocities, the blue
+histogram shows the distribution of velocities for stars with RVs,
+and the orange lines show the 1D marginal Gaussian prior distributions.
+}
+  \centering
+    \includegraphics[width=1\textwidth]{results}
+\label{fig:results}
+\end{figure}
+
+
 To validate our method, we inferred velocities for stars in our sample with
 measured RVs and compared those inferred values with velocities calculated
 directly from 6D position, proper motion, and RV measurements.
@@ -32,3 +81,4 @@ sample, in addition to their positional and velocity information from
 Gaia EDR3, LAMOST DR5 and APOGEE DR16.
 A sample of this table is displayed here, and the full machine-readable table
 is available online.
+
