@@ -5,7 +5,7 @@ In this section we describe how we calculated full 3D velocities for stars in
 the Kepler field.
 Around 1 in 2 stars in the Kepler field have an RV from either Gaia, LAMOST,
 or APOGEE.
-For these XXX stars we calculated 3D velocities using the {\tt coordinates}
+For these \nrv\ stars we calculated 3D velocities using the {\tt coordinates}
 library of {\tt astropy} \citep{astropy2013, astropy2018}.
 This library performs a series of matrix rotations and translations to convert
 stellar positions and velocities in equatorial, or International Celestial
@@ -61,7 +61,7 @@ measurements)}
 For each star in our sample without an RV measurement, we inferred \vx, \vy,
 and \vz\ from the 3D positions -- RA (\ra), dec (\dec), and parallax
 (\parallax), and 2D proper motions (\mura\ and \mudec) provided in the \gaia\
-EDR3 catalog \citep{citation}.
+EDR3 catalog \citep{gaia_edr3}.
 We also simultaneously inferred distance (instead of using inverse-parallax)
 to model velocities \citep[see \eg][]{bailer-jones2015, bailer-jones2018}.
 
