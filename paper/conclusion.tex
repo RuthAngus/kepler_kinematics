@@ -18,17 +18,17 @@ for kinematic age-dating.
 We compiled crossmatches of the Kepler, Gaia EDR3, LAMOST DR5 and APOGEE DR16
 catalogs.
 Gaia EDR3 provided parallaxes, positions and proper motions for the stars in
-our sample, and Gaia DR2 provided RVs for XXX stars.
-LAMOST DR5 provided XXX RVs for stars in our sample, and APOGEE DR16 provided
-XXX.
+our sample, and Gaia DR2 provided RVs for \ngaia\ stars.
+LAMOST DR5 provided \nlamost\ RVs for stars in our sample, and APOGEE DR16
+provided \napogee.
 Of the three spectroscopic surveys, APOGEE has the highest resolution,
 followed by Gaia, then LAMOST, so we adopted RVs in that priority-order
 where stars had multiple RV measurements available.
 
-We calculated \vx, \vy, and \vz\ for the XXX stars in our sample with RVs
+We calculated \vx, \vy, and \vz\ for the \nrv\ stars in our sample with RVs
 using {\tt astropy}.
-For the remaining XXX stars, we {\it inferred} \vx, \vy, \vz, and distance
-while marginalizing over RV.
+For the remaining stars, we {\it inferred} \vx, \vy, \vz, and distance while
+marginalizing over RV.
 Our prior was a 4D Gaussian in \vx, \vy, \vz\ and $\ln$(distance), which was
 based on the distribution of stars in our sample {\it with} RVs.
 Since the populations of stars with and without RVs in the Kepler field are
@@ -48,7 +48,7 @@ for Kepler stars.
 A caveat of our inferred velocities is therefore that the \vy\ velocities may
 not be accurate for faint stars in the Kepler field.
 
-We provide a table of \vx, \vy, \vz, and $\ln$(distance) for a total of XXX
-stars observed by Kepler.
+We provide a table of \vx, \vy, \vz, and $\ln$(distance) for a total of
+\nstars\ stars observed by Kepler.
 This table also contains the positional and velocitiy information from Gaia
 DR2, Gaia EDR3, LAMOST DR5, and APOGEE DR16.
