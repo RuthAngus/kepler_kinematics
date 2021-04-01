@@ -7,20 +7,20 @@ in a 1'' radius.
 This catalog includes Gaia positions, parallaxes, and proper motions from
 Gaia EDR3 and RVs from Gaia DR2.
 It also includes distances inferred from Gaia EDR3 parallaxes
-\citep{bailer-jones2020}.
+\citep{bailer-jones2021}.
 % created using the cross-match service and Vizier catalogue access tool
 % provided by CDS, Strasbourg, France, as well as the astroquery and astropy
 % python packages.
 We crossmatched this catalog with the LAMOST DR5 catalog, also using a 1''
 radius and, where available, added APOGEE RVs from the DR16 stellar catalog
-\citep{citations}.
+\citep{apogee_dr16}.
 We removed stars with a Gaia parallax $<$ 0, parallax signal-to-noise ratio
 $<$ 10, or Gaia astrometric excess noise $>$ 5.
 After applying these cuts our total number of targets was \nstars\ stars:
 \ngaia\ with RVs from Gaia DR2, \nlamost\ from LAMOST DR5, and \napogee\ from
 APOGEE DR16.
 In total, \nrv\ stars in our sample have RVs from {\it either} Gaia, LAMOST,
-or APOGEE, \ntwo\ have RVs from two sources, and \nthree\ from all three.
+or APOGEE.
 The APOGEE survey has a higher spectral resolution than Gaia, which in turn is
 higher than LAMOST.
 The median RV uncertainty for stars in our sample is around 0.1 km/s for
@@ -34,10 +34,9 @@ Very few of the faintest stars have RV measurements because of the selection
 functions of spectroscopic surveys.
 % In our sample, one in 2.5 stars hotter than 5000 K had RV measurements,
 % whereas only one in six stars cooler than 5000 K had RVs.
-\gaia\ DR2 only includes RVs for stars brighter than around 13th magnitude,
-and \lamost\ only provides RVs for \kepler\ stars brighter than around 17th
-magnitude in \gaia\ $G$-band.
-\racomment{Ruth, check the actual LAMOST selection function.}
+Most of the stars in our sample with Gaia RV measurements are brighter than
+around 14th magnitude in Gaia $G$-band, and stars with LAMOST or APOGEE RVs
+are mostly brighter than around 16th magnitude.
 Figure \ref{fig:rv_histogram} shows the apparent magnitude and temperature
 distributions of the stars in our sample, with and without RVs.
 This figure reveals the combined selection functions of the Gaia, LAMOST and
@@ -64,10 +63,10 @@ the red clump.
 Most stars without RVs fall on the main sequence.
 This overall selection function is a combination of the APOGEE, LAMOST and
 Gaia DR2 selection functions.
-The Gaia DR2 selection function is primarily a cut in apparent Gaia $G$-band
-magnitude.
-The LAMOST selection function is...
-The APOGEE selection function is...
+% The Gaia DR2 selection function is primarily a cut in apparent Gaia $G$-band
+% magnitude.
+% The LAMOST selection function is...
+% The APOGEE selection function is...
 \begin{figure}[ht!]
 \caption{
     The color-temperature diagram of stars in the Kepler field with (left)

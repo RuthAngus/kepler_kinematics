@@ -1,29 +1,20 @@
 \section{Method}
 \label{sec:method}
 
-In this section we describe how we calculated full 3D velocities for stars in
+In this section we describe how we calculate full 3D velocities for stars in
 the Kepler field.
 Around 1 in 2 stars in the Kepler field have an RV from either Gaia, LAMOST,
 or APOGEE.
 For these \nrv\ stars we calculated 3D velocities using the {\tt coordinates}
 library of {\tt astropy} \citep{astropy2013, astropy2018}.
 This library performs a series of matrix rotations and translations to convert
-stellar positions and velocities in equatorial, or International Celestial
-Reference System (ICRS) coordinates into positions and velocities in
-Galactocentric coordinates.
-In other words, it converts positions and proper motions in RA and dec,
-parallaxes/distances, and RVs into \x, \y, \z, \vx, \vy, \vz.
-For stars without RVs we {\it inferred} their velocities by marginalizing over
-their RVs.
-
-For computational efficiency, we used {\tt PyMC3} to sample the posterior PDFs
-of stellar velocities.
-This required that we rewrite the {\tt astropy} coordinate transformation code
-using {\tt numpy} and {\tt Theano} \citep{citations}.
-The series of rotations and translations required to convert from equatorial
-to Galactocentric coordinates is described in the astropy
-documentation\footnote{
-    https://docs.astropy.org/en/stable/coordinates/galactocentric.html }.
+stellar positions and velocities in equatorial
+% , or International Celestial Reference System (ICRS)
+coordinates into positions and velocities in Galactocentric coordinates.
+In other words, it converts positions, proper motions, parallaxes/distances,
+and RVs into \x, \y, \z, \vx, \vy, \vz.
+For stars {\it without} RVs we inferred their velocities by marginalizing over
+their RVs using the method described below.
 
 % It has been demonstrated that the dispersion in vertical velocity, \vz, of a
 % population of stars increases with the age of that population,
@@ -84,16 +75,23 @@ converted to equatorial coordinates, \pmra\ and \pmdec\ via another rotation.
 The posterior PDFs of the parameters \vx, \vy, \vz, and $\ln(D)$ are sampled
 by evaluating this model over a range of parameter values which are chosen by
 via the No U-Turns Sampler (NUTS) algorithm in {\tt PyMC3}.
-At each set of model parameters the likelihood is calculated, using, a
-Gaussian likelihood function and multiplied by a prior to produce the
-posterior probability: the probability of those model parameters given the
+At each set of model parameters the likelihood is calculated via a Gaussian
+likelihood function, and multiplied by a prior (described below) to produce
+the posterior probability: the probability of those model parameters given the
 data.
-The prior is described below.
 
+For computational efficiency, we used {\tt PyMC3} to sample the posterior PDFs
+of stellar velocities \citep{pymc3}.
+This required that we rewrite the {\tt astropy} coordinate transformation code
+using {\tt numpy} and {\tt Theano} \citep{numpy, theano}.
+The series of rotations and translations required to convert from equatorial
+to Galactocentric coordinates is described in the astropy
+documentation\footnote{
+    https://docs.astropy.org/en/stable/coordinates/galactocentric.html }.
 For each star in the \kepler\ field, we explored the posteriors of the four
 parameters, \vx, \vy, \vz, and $\ln(D)$ using the {\it PyMC3} No U-Turn
 Sampler (NUTS) algorithm, and the {\tt exoplanet} \python\ library
-\racomment{(citations)}.
+\citep{exoplanet}.
 We tuned the {\it PyMC3} sampler for 1500 steps, with a target acceptance
 fraction of 0.9, then ran four chains of 1000 steps for a total of 4000 steps.
 This resulted in a $\hat{r}$-statistic (the ratio of intra-chain to
@@ -130,11 +128,11 @@ The direction of the field is almost aligned with the \y-axis and almost
 \end{figure}
 
 We constructed a multivariate Gaussian prior PDF over distance and 3D velocity
-using the Kepler targets {\it with RV measurements}.
+using the Kepler targets {\it which have RV measurements}.
 We calculated the means and covariances of the \vx, \vy, \vz\ and $\ln(D)$
 distributions of stars with measured RVs and then used these means and
-covariances to construct a multivariate Gaussian prior over the parameters for
-stars {\it without} RVs.
+covariances to construct a multivariate Gaussian prior over the velocity and
+distance parameters for stars {\it without} RVs.
 Velocity outliers greater than 3-$\sigma$ were removed before calculating the
 means and covariances of the distributions.
 The distance and velocity distributions of Kepler targets with RVs are
@@ -169,41 +167,48 @@ main-sequence dwarfs.
 % velocities.
 For this reason, a prior based on the velocity distributions of stars {\it
 with} RVs will not necessarily reflect the velocities of those without.
-However, given that \vx\ and \vz\ are strongly informed by proper motion
-measurements, and therefore likely to be relatively prior-insensitive, the
-prior may not significantly impact our final vertical velocities.
+% However, given that \vx\ and \vz\ are strongly informed by proper motion
+% measurements, and therefore likely to be relatively prior-insensitive, the
+% prior may not significantly impact our final vertical velocities.
 
 We tested the influence of the prior on the velocities we inferred.
-One of the main features of the RV selection functions is brightness: Gaia
-DR2 RVs are only available for stars brighter than around 13th magnitude, and
-LAMOST DR5 RVs for stars brighter than around 17th magnitude, and APOGEE DR16
-RVs for stars brighter than XXXth magnitude.
+One of the main features of the RV selection functions is brightness: Gaia DR2
+RVs are only available for stars brighter than around 14th magnitude, and
+LAMOST DR5 and APOGEE DR16 RVs for stars brighter than around 16th magnitude.
 For this reason, we tested priors based on stellar populations with different
 apparent magnitudes.
 Three priors were tested: one calculated from the velocity distributions of
 the brightest half of the RV sample (\gaia\ $G$-band apparent magnitude $<$
-13), one from the faintest half ($G$ $>$ 13), and one from all stars with RVs.
+13), one from the faintest half ($G$ $>$ 13), and one from {\it all} stars
+with RVs.
 Figure \ref{fig:prior_distributions} shows the distributions of the faint
 (blue) and bright (orange) halves of the RV sample as kernel density estimates
 (KDEs).
 The distributions are different because bright stars are typically more
-massive, younger, more evolved, or closer to the Sun on average than faint
+massive, younger, more evolved, and/or closer to the Sun on average than faint
 stars.
 As a result, these stars occupy slightly different Galactic orbits.
-The Gaussian fits to these distributions, which were used as prior PDFs, are
-shown in figure \ref{prior_distributions} as dashed, colored lines.
+The multivariate Gaussian, fit to these distributions, which was used as a
+prior PDF, is shown as single-dimension projections in figure
+\ref{fig:prior_distributions}.
+The Gaussian fit to the bright and faint star distributions are shown as
+dashed orange and blue lines, respectively.
 The Gaussian fit to {\it all} the data, both bright and faint, is shown as a
 black solid line.
 The means of the faint and bright distributions differ by 6 \kms, 5 \kms, 1
 \kms\ and 0.21 kpc, for \vx\, \vy, \vz\ and $\ln(D)$, respectively.
 The \vx, \vy, and distance distributions of the bright stars are slightly
-non-Gaussian -- more so than the faint stars. \racomment{why?}.
+non-Gaussian -- more so than the faint stars.
 This highlights the inadequacy of using a Gaussian distribution as the prior
 -- a Gaussian is only an approximation of the underlying distribution of stars
 in our sample.
-As a result, inferred velocities that are strongly prior-dependent -- (\ie
-especially those in the \y-direction) will have some slight inaccuracies
-baked-in.
+As a result of this approximation, inferred velocities that are strongly
+prior-dependent -- (\ie especially those in the \y-direction) may inherit some
+inaccuracies from the Gaussian prior, which is not a perfect representation of
+the underlying data.
+However, given that the populations of stars with and without RV measurements
+are different, it may be inappropriate to use a more complex, more
+informative prior anyway.
 
 \begin{figure}[ht!]
 \caption{
@@ -280,5 +285,5 @@ We conclude that the \vx\ and \vz\ velocities we infer are relatively
 insensitive to prior choice, and we adopt a prior calculated from the
 distributions of all stars with RV measurements (black Gaussians in figure
 \ref{fig:prior_distributions}).
-The \vy\ velocities are a slightly different story and should be used with
+The \vy\ velocities are more strongly prior dependent and should be used with
 caution.
