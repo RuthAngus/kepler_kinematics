@@ -166,7 +166,7 @@ def sn_cuts(df):
 
 def add_velocities(df):
     xyz, vxyz = kek.simple_calc_vxyz(df.ra.values, df.dec.values,
-                                    1./df.parallax.values, df.pmra.values,
+                                    df.r_est.values*1e-3, df.pmra.values,
                                     df.pmdec.values,
                                     df.rv.values)
     vx, vy, vz = vxyz
