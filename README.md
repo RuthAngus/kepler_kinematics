@@ -86,6 +86,6 @@ Notebooks
 
 **Paper_Plots**: A Companion notebook to the paper, producing plots.
 
-**Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities.
+**Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities. Also saves a figure of a posterior.
 
 **Examining_the_LAMOST_crossmatch**: Looking in detail at the Gaia-LAMOST crossmatch.

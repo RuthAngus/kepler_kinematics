@@ -269,4 +269,10 @@ if __name__ == "__main__":
     print("Saving file")
     fname = "../kepler_kinematics/gaia_kepler_lamost.csv"
     print(fname)
+
+    # Randomly shuffle the data file so it is not in order of
+    # ascending Kepler id
+    np.random.seed(42)
+    df = df.sample(frac=1)
+
     df.to_csv(fname)
