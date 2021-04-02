@@ -25,11 +25,34 @@ distribution of directly-measured velocities; the velocities of stars
 calculated with and without RVs are broadly similar.
 
 Among stars with measured RVs, \vy\ and \vz\ are slightly positively
-correlated: stars with larger \vy\ tend to have larger \vz.
+correlated, \ie\ stars with larger \vy\ tend to have larger \vz.
 However, the inferred velocities have the opposite trend: stars with larger
 \vy\ have a smaller \vz.
-% This difference is caused by the slight degeneracy between \vy\ and \vz\ for
-% stars that do not have RVs.
+This negative correlation is not seen in the prior, nor is it apparent in the
+posteriors of individual stars: figure \ref{fig:posterior} shows that the \vy\
+and \vz\ parameters are positively correlated for KIC \kicstar.
+The reason for the negative correlation seen in the population of stars is due
+to the specific orientation of the Kepler field.
+This orientation creates a negative correlation in the population of stars,
+that is not apparent in the posteriors of individual stars.
+% To an observer looking at Kepler field, a star with either a positive \vz\ or
+% a {\it negative} \vy\ would appear to move in the direction of positive \vz,
+% when projected onto the sky.
+% In this sense, \vy\ and \vz\ are negatively correlated.
+% However, the observed proper motions of a star without a measured RV could be
+% equally well described by either increasing both \vy\ and \vz, or decreasing
+% both \vy\ and \vz.
+% For this reason, the star's posterior PDF over \vy\ and \vz\ will be
+% positively correlated.
+
+% could have {\it
+% either} a positive \vz, or a postitive \vy. with a positive
+% \vz\
+% This difference is caused by the way the inaccuracies in inferred \vy\
+% velocities manifest in the \vz\ velocity distribution.
+% Although correlation patterns appear between the inferred velocities as a
+% result of marginalizing over RV, the inferred velocities are still consistent
+% with their `true' velocities.
 % The proper motions of stars with a given \vy\ and \vz\ could be equally
 % well-described with a slightly larger \vy\ and a smaller \vz\ or vice versa.
 
@@ -75,12 +98,12 @@ The velocities of low-\vy\ stars are underestimated and the velocities of
 high-\vy\ stars are overestimated.
 This is because there is little information to constrain the \vy\ velocities
 and the prior pulls the \vy\ velocities toward the center of the distribution.
-Velocities in the \y\ and \z\ directions are tightly correlated for Kepler
-stars because of the position of the field on the sky.
-This means that stars with underestimated \vy\ velocities also have
-underestimated \vz\ velocities.
-To a lesser degree, \vy\ and \vx\ are correlated too, so underestimated \vy\
-also results in a slightly underestimated \vx.
+The \vx, \vy\ and \vz\ velocities of stars are correlated.
+This means that stars with an inaccurate \vy\ also have slightly accurate \vz\
+and, to a lesser degree, inaccurate \vx.
+Despite slight systematic inaccuracies, Around 68\% of the inferred velocities
+are within 1$\sigma$ of their true velocities; the inferred velocities are
+consistent with the true velocities.
 
 Table \ref{velocity_table} contains the inferred 3D velocities of stars in our
 sample, in addition to their positional and velocity information from
