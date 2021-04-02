@@ -3,8 +3,8 @@
 
 \subsection{Inferred velocities}
 
-Figure \ref{fig:results} shows the inferred velocities of 5000 randomly
-selected Kepler stars.
+Figure \ref{fig:results} shows the distribution of velocities, inferred for
+5000 randomly selected Kepler stars.
 The 2D distributions of inferred stellar velocities are plotted in the
 lower-left panels, with black contours indicating the stellar number density.
 The red contours in these panels show the marginal projections of the
@@ -12,25 +12,26 @@ Gaussian prior in 2D.
 The diagonal panels show the 1D distributions (histograms) of stellar
 velocities.
 The black histogram shows the distribution of inferred velocities, the cyan
-histogram shows the distribution of velocities calculated for stars with RVs,
-and the red lines show the 1D marginal Gaussian prior distributions.
-This figure shows that the velocity distributions of stars calculated with and
-without RVs are broadly similar.
+histogram shows the distribution of velocities calculated for stars with RVs
+(on which the prior was based), and the red lines show the 1D prior
+distributions.
 The prior distribution is calculated using the velocities of stars with RVs.
 If the velocity distributions of stars were Gaussian, the 1D red Gaussians
 would look like the cyan histograms.
 In other words, the differences between the red lines and cyan histograms
 is caused by the non-Gaussianity of the velocity distributions.
+In each panel, the distribution of inferred velocities is similar to the
+distribution of directly-measured velocities; the velocities of stars
+calculated with and without RVs are broadly similar.
 
-% Among stars with measured RVs, \vy\ and \vz\ are slightly positively
-% correlated: stars with larger \vy\ tend to have larger \vz.
-% However, the inferred velocities have the opposite trend: stars with larger
-% \vy\ have a smaller \vz.
+Among stars with measured RVs, \vy\ and \vz\ are slightly positively
+correlated: stars with larger \vy\ tend to have larger \vz.
+However, the inferred velocities have the opposite trend: stars with larger
+\vy\ have a smaller \vz.
 % This difference is caused by the slight degeneracy between \vy\ and \vz\ for
 % stars that do not have RVs.
 % The proper motions of stars with a given \vy\ and \vz\ could be equally
 % well-described with a slightly larger \vy\ and a smaller \vz\ or vice versa.
-% As a result,
 
 \begin{figure}[ht!]
 \caption{
@@ -51,16 +52,14 @@ and the orange lines show the 1D marginal Gaussian prior distributions.
     \includegraphics[width=1\textwidth]{results}
 \label{fig:results}
 \end{figure}
-
-
 To further validate our method, we compare inferred velocities with
 directly-calculated velocities for stars in our sample with measured RVs.
 Figure \ref{fig:residuals} shows the \vx, \vy\ and \vz\ velocities, and
 distances we inferred, compared with those calculated from measured RVs, for
-3000 Kepler stars chosen at random.
+5000 Kepler stars chosen at random.
 \begin{figure}[ht!]
 \caption{Velocities calculated with full 6D information compared with
-    velocities inferred without RVs, for 3000 Kepler targets with RV
+    velocities inferred without RVs, for 5000 Kepler targets with RV
     measurements.}
   \centering
     \includegraphics[width=1\textwidth]{residuals}
@@ -89,17 +88,34 @@ Gaia EDR3, LAMOST DR5 and APOGEE DR16.
 A sample of this table is displayed here, and the full machine-readable table
 is available online.
 
-\ref{tab:data}.
 \begin{table}[h!]
   \begin{center}
       \caption{
-The velocities calculated in this project (the full table is available
-      online).
+A sample of the velocity table provided in its full version online.
+      The full list of columns is provided in table \ref{tab:columns}.
       }
     \label{tab:data}
-\begin{tabular}{cccccc}
-    KIC ID & DR3 source ID & $\alpha (^\circ)$ & $\delta (^\circ)$ & $\omega$
-    [mas] & Distance [kpc] \\
+\begin{tabular}{cc}
+    Column name & Description \\
+\hline
+\end{tabular}
+\end{center}
+\ref{tab:columns}
+\end{table}
+
+\begin{table}[h!]
+  \begin{center}
+      \caption{
+A sample of the velocity table provided in its full version online.
+      The full list of columns is provided in table \ref{tab:columns}.
+      }
+    \label{tab:data}
+\begin{tabular}{cccccccccc}
+    KIC ID & DR3 source ID & $\alpha$ & $\delta$ & $\bar{\omega}$
+    & Distance & $\mu_{\alpha}$ & $\mu_\delta$ & RV (Gaia) & ... \\
+    & & $(^\circ)$ & $(^\circ)$ & mas & kpc & mas/yr & mas/yr & km/s & \\
+    {\tt KIC$\_$ID} & {\tt source$\_$id} & {\tt ra} & {\tt dec} &
+    {\tt parallax} & {\tt r$\_$est} & {\tt pmra} & {\tt pmdec} \\
 \hline
 1164102 & 0.63 & 4053 & 31.5 $\pm$ 0.5 & 13.6 $\pm$ 0.2 & 21.2 $\pm$ 0.4 \\
 1292688 & 0.52 & 3752 & 42.7 $\pm$ 2.1 & -14.2 $\pm$ 0.2 & 21.9 $\pm$ 0.7 \\
@@ -115,5 +131,5 @@ The velocities calculated in this project (the full table is available
 \end{center}
 \tablecomments{This table is published in its entirety in a machine-readable format.
       A portion is shown here for guidance regarding its form and content.}
+\ref{tab:data}
 \end{table}
-

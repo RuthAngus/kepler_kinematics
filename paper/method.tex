@@ -293,10 +293,23 @@ distributions of all stars with RV measurements (black Gaussians in figure
 The \vy\ velocities are more strongly prior dependent and should be used with
 caution.
 
+Figure \ref{fig:posterior} shows the posterior PDF over velocity and distance
+parameters for a randomly selected Kepler target with an RV measurement, KIC
+\kicstar.
+Blue lines in each panel indicate the velocities calculated using the RV
+measurement and the distributions indicated the probability density of the
+parameters, inferred {\it without} the RV measurement.
+The velocity parameters are correlated because the lack of RV introduces a
+slight degeneracy: the star's proper motion can be equally well described with
+a range of different velocities.
+However, the star's posterior is particularly elongated in \vy, which is the
+velocity most similar to RV.
+The star's distance is not tightly correlated with its velocity parameters
+because it is precisely determined by parallax.
 \begin{figure}[ht!]
 \caption{
 The posterior PDF over parameters \vx, \vy, \vz\ and $\ln$(distance) for a
-    Kepler target chosen at random: KIC 10350652.
+    Kepler target chosen at random: KIC \kicstar.
 This figure shows that the velocity parameters are tightly correlated.
     }
   \centering
