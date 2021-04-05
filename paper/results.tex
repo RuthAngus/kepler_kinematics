@@ -114,45 +114,52 @@ is available online.
 \begin{table}[h!]
   \begin{center}
       \caption{
-A sample of the velocity table provided in its full version online.
-      The full list of columns is provided in table \ref{tab:columns}.
+The velocities and kinematic information for the \nstars\ Kepler targets in
+      our sample.
+      The full list of columns is provided in table \ref{tab:columns} and the
+      full version is published in its entirey online.
       }
-    \label{tab:data}
-\begin{tabular}{cc}
-    Column name & Description \\
-\hline
-\end{tabular}
-\end{center}
-\ref{tab:columns}
-\end{table}
-
-\begin{table}[h!]
-  \begin{center}
-      \caption{
-A sample of the velocity table provided in its full version online.
-      The full list of columns is provided in table \ref{tab:columns}.
-      }
-    \label{tab:data}
+\label{tab:data}
 \begin{tabular}{cccccccccc}
     KIC ID & DR3 source ID & $\alpha$ & $\delta$ & $\bar{\omega}$
     & Distance & $\mu_{\alpha}$ & $\mu_\delta$ & RV (Gaia) & ... \\
     & & $(^\circ)$ & $(^\circ)$ & mas & kpc & mas/yr & mas/yr & km/s & \\
-    {\tt KIC$\_$ID} & {\tt source$\_$id} & {\tt ra} & {\tt dec} &
+    {\tt kic$\_$id} & {\tt source$\_$id} & {\tt ra} & {\tt dec} &
     {\tt parallax} & {\tt r$\_$est} & {\tt pmra} & {\tt pmdec} \\
 \hline
-1164102 & 0.63 & 4053 & 31.5 $\pm$ 0.5 & 13.6 $\pm$ 0.2 & 21.2 $\pm$ 0.4 \\
-1292688 & 0.52 & 3752 & 42.7 $\pm$ 2.1 & -14.2 $\pm$ 0.2 & 21.9 $\pm$ 0.7 \\
-1297303 & 0.67 & 4318 & 27.3 $\pm$ 0.2 & 16.7 $\pm$ 0.3 & 16.7 $\pm$ 0.2 \\
-1429921 & 0.65 & 4258 & 23.1 $\pm$ 0.1 & -7.0 $\pm$ 0.2 & 14.8 $\pm$ 0.2 \\
-1430349 & 0.65 & 4368 & 34.7 $\pm$ 0.8 & 12.2 $\pm$ 0.2 & 19.7 $\pm$ 0.4 \\
-1430893 & 0.61 & 3985 & 17.0 $\pm$ 0.0 & 0.4 $\pm$ 0.1 & 9.2 $\pm$ 0.1 \\
-1431116 & 0.72 & 4415 & 38.8 $\pm$ 1.0 & -16.5 $\pm$ 0.1 & 19.7 $\pm$ 0.4 \\
-1432745 & 0.7 & 4413 & 22.2 $\pm$ 0.2 & -2.1 $\pm$ 0.0 & 13.4 $\pm$ 0.2 \\
-1435229 & 0.57 & 4080 & 23.5 $\pm$ 0.0 & -8.8 $\pm$ 1.0 & 13.2 $\pm$ 0.2 \\
-1569682 & 0.57 & 3909 & 17.4 $\pm$ 0.2 & 4.4 $\pm$ 0.1 & 9.2 $\pm$ 0.1 \\
+... & ... & ... & ... & ... & ... \\
 \end{tabular}
 \end{center}
 \tablecomments{This table is published in its entirety in a machine-readable format.
       A portion is shown here for guidance regarding its form and content.}
 \ref{tab:data}
+\end{table}
+
+\begin{table}[h!]
+  \begin{center}
+      \caption{
+The full list of columns in table \ref{tab:data}, which provides the
+velocities and kinematic information for stars in the Kepler field.
+      }
+\label{tab:columns}
+\begin{tabular}{cc}
+    Column name & Description \\
+\hline
+    {\tt kic$\_$id} & The Kepler Input Catalog ID number of the target. \\
+    {\tt source$\_$id} & The Gaia DR3 ID number of the target. \\
+    {\tt ra, ra$\_$error} & Gaia EDR3 right ascenscion ($^\circ$). \\
+    {\tt dec, dec$\_$error} & Gaia EDR3 declination in degrees ($^\circ$). \\
+    {\tt parallax, parallax$\_$error} & Gaia EDR3 parallax (mas). \\
+    {\tt r$\_$est, r$\_$est$\_$err} & Distance (parsec), provided by
+    \citet{bailer-jones_2021}. \\
+    {\tt pmra, pmra$\_$error} & Gaia EDR3 proper motion in right ascension (mas/yr). \\
+    {\tt pmdec, pmdec$\_$error} & Gaia EDR3 proper motion in declination (mas/yr). \\
+    {\tt gaia$\_$rv, gaia$\_$rv$\_$error} & Gaia DR2 radial velocity (km/s) \\
+    {\tt apogee$\_$rv, apogee$\_$rv$\_$error} & APOGEE DR16 radial velocity (km/s) \\
+    {\tt lamost$\_$rv, lamost$\_$rv$\_$error} & LAMOST DR5 radial velocity (km/s) \\
+    {\tt vx$\_$calc} & The \vx\ velocity (km/s) calculated using RV. \\
+    {\tt vx$\_$inferred, vx$\_$inferred$\_$error} & The \vx\ velocity (km/s) inferred without RV. \\
+    etc & etc \\
+\end{tabular}
+\end{center}
 \end{table}
