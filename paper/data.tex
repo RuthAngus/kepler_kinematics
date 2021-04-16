@@ -2,7 +2,7 @@
 \label{sec:data}
 
 We used the Kepler-Gaia cross-matched catalog available at gaia-kepler.fun,
-which includes 194764 Kepler targets, cross-matched with Gaia targets within
+which contains \nfun\ Kepler targets, cross-matched with Gaia targets within
 in a 1'' radius.
 This catalog includes Gaia positions, parallaxes, and proper motions from
 Gaia EDR3 and RVs from Gaia DR2.
@@ -11,9 +11,9 @@ It also includes distances inferred from Gaia EDR3 parallaxes
 % created using the cross-match service and Vizier catalogue access tool
 % provided by CDS, Strasbourg, France, as well as the astroquery and astropy
 % python packages.
-We crossmatched this catalog with the LAMOST DR5 catalog, also using a 1''
-radius and, where available, added APOGEE RVs from the DR16 stellar catalog
-\citep{apogee_dr16}.
+We crossmatched this catalog with the LAMOST DR5 catalog and the APOGEE DR16
+stellar catalog also using a 1'' radius \citep{cui2012, apogee_dr16,
+xiang2019}.
 We removed stars with a Gaia parallax $<$ 0, parallax signal-to-noise ratio
 $<$ 10, or Gaia astrometric excess noise $>$ 5.
 After applying these cuts our total number of targets was \nstars\ stars:
@@ -28,10 +28,10 @@ APOGEE RVs, 1 km/s for Gaia RVS, and 4 km/s for LAMOST RVs.
 In cases where stars had two or more available RV measurements, we adopted
 APOGEE RVs as a first priority, followed by Gaia, then LAMOST.
 
-Although RVs are available for more than one in three stars in this \kepler\
-sample, most stars with RVs are bright.
-Very few of the faintest stars have RV measurements because of the selection
-functions of spectroscopic surveys.
+Although RVs are available for more than one in three Kepler targets, most
+stars with RV measurements are bright.
+Very few of the faintest stars have RVs because of the selection functions of
+spectroscopic surveys.
 % In our sample, one in 2.5 stars hotter than 5000 K had RV measurements,
 % whereas only one in six stars cooler than 5000 K had RVs.
 Most of the stars in our sample with Gaia RV measurements are brighter than
@@ -40,8 +40,8 @@ are mostly brighter than around 16th magnitude.
 Figure \ref{fig:rv_histogram} shows the apparent magnitude and temperature
 distributions of the stars in our sample, with and without RVs.
 This figure reveals the combined selection functions of the Gaia, LAMOST and
-APOGEE RV surveys and shows that faint stars have fewer RV measurements than
-bright ones.
+APOGEE RV surveys and shows that faint stars are less likely to have RV
+measurements than bright ones.
 \begin{figure}[ht!]
 \caption{
     % The apparent magnitude (left) and temperature (right) distributions of
@@ -69,7 +69,7 @@ Gaia DR2 selection functions.
 % The APOGEE selection function is...
 \begin{figure}[ht!]
 \caption{
-    The color-temperature diagram of stars in the Kepler field with (left)
+    A magnitude-temperature diagram of stars in the Kepler field with (left)
     and without (right) RVs provided by Gaia, LAMOST and APOGEE.
     The stars with RVs are generally hotter and more luminous than those
     without RVs, and include a large number of red clump stars and red giant

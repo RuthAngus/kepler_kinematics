@@ -3,18 +3,17 @@
 
 In this section we describe how we calculate full 3D velocities for stars in
 the Kepler field.
-Around 1 in 2 stars in the Kepler field have an RV from either Gaia, LAMOST,
-or APOGEE.
+Around 1 in 3 Kepler targets have an RV from either Gaia, LAMOST, or APOGEE.
 For these \nrv\ stars we calculated 3D velocities using the {\tt coordinates}
 library of {\tt astropy} \citep{astropy2013, astropy2018}.
 This library performs a series of matrix rotations and translations to convert
 stellar positions and velocities in equatorial
 % , or International Celestial Reference System (ICRS)
 coordinates into positions and velocities in Galactocentric coordinates.
-In other words, it converts positions, proper motions, parallaxes/distances,
-and RVs into \x, \y, \z, \vx, \vy, \vz.
-For stars {\it without} RVs we inferred their velocities by marginalizing over
-their RVs using the method described below.
+It converts positions, proper motions, parallaxes/distances, and RVs into \x,
+\y, \z, \vx, \vy, \vz.
+For stars {\it without} RVs, we inferred their velocities by marginalizing
+over their RVs using the method described below.
 
 % It has been demonstrated that the dispersion in vertical velocity, \vz, of a
 % population of stars increases with the age of that population,
@@ -133,13 +132,13 @@ We calculated the means and covariances of the \vx, \vy, \vz\ and $\ln(D)$
 distributions of stars with measured RVs and then used these means and
 covariances to construct a multivariate Gaussian prior over the velocity and
 distance parameters for stars {\it without} RVs.
-Velocity outliers greater than 3-$\sigma$ were removed before calculating the
-means and covariances of the distributions.
+Velocity and distance outliers greater than 3-$\sigma$ were removed before
+calculating the means and covariances of the distributions.
 The distance and velocity distributions of Kepler targets with RVs are
 displayed in figure \ref{fig:prior_distributions_2D}.
 These are the distributions we used to construct the prior.
-The 2-$\sigma$ contour of the multivariate Gaussian prior is shown in each
-panel as a black ellipse.
+The 1- and 2-$\sigma$ contours of the multivariate Gaussian prior is shown in
+each panel in red.
 \begin{figure}[ht!]
 \caption{
 The velocity and distance distributions for stars with RV measurements,
@@ -204,9 +203,9 @@ This highlights the inadequacy of using a Gaussian distribution as the prior
 -- a Gaussian is only an approximation of the underlying distribution of stars
 in our sample.
 As a result of this approximation, inferred velocities that are strongly
-prior-dependent -- (\ie especially those in the \y-direction) may inherit some
-inaccuracies from the Gaussian prior, which is not a perfect representation of
-the underlying data.
+prior-dependent -- (\ie\ especially those in the \y-direction) may inherit
+some inaccuracies from the Gaussian prior, which is not a perfect
+representation of the underlying data.
 However, given that the populations of stars with and without RV measurements
 are different, it may be inappropriate to use a more complex, more
 informative prior anyway.
@@ -224,7 +223,7 @@ informative prior anyway.
     \includegraphics[width=1\textwidth]{prior_distributions}
 \label{fig:prior_distributions}
 \end{figure}
-We inferred the velocities of 3000 stars chosen at random from the
+We inferred the velocities of 1000 stars chosen at random from the
 RV Kepler sample using each of these three priors and compared the
 inferred velocity distributions.
 If the inferred velocities were highly prior-dependent, the resulting
@@ -264,9 +263,9 @@ The distributions of velocity and distance parameters, inferred using three
     different priors.
 The orange line is a KDE that represents the distribution of parameters
     inferred with a Gaussian prior, estimated from the bright half of the RV
-    sample ($G < $ 13.9).
+    sample ($G < $ 13).
 The blue dashed line shows the results from a prior estimated from the faint
-    half of the RV sample ($G > 13.9$.
+    half of the RV sample ($G > 13$)).
 The black line shows the results from a prior calculated from all stars with
     RV measurements and is the prior we adopt in our final analysis.
     }
@@ -283,7 +282,7 @@ brighter overall than the sample of stars without RVs (\eg\ figure
 \ref{fig:rv_histogram}), figure \ref{fig:prior_comparison} nevertheless shows
 that \vx\ and \vz\ are not strongly prior-dependent.
 Since this work is chiefly motivated by kinematic age-dating, which mostly
-requires vertical velocities, \vz\, we are satisfied with these results.
+requires vertical velocities (\vz) we are satisfied with these results.
 The difference in the dispersions of \vz\ velocities, calculated with the
 three different priors tested above was smaller than 0.5 \kms.
 We conclude that the \vx\ and \vz\ velocities we infer are relatively
@@ -302,7 +301,7 @@ parameters, inferred {\it without} the RV measurement.
 The velocity parameters are correlated because the lack of RV introduces a
 slight degeneracy: the star's proper motion can be equally well described with
 a range of different velocities.
-However, the star's posterior is particularly elongated in \vy, which is the
+The star's posterior PDF is particularly elongated in \vy, which is the
 velocity most similar to RV.
 The star's distance is not tightly correlated with its velocity parameters
 because it is precisely determined by parallax.
@@ -310,9 +309,10 @@ because it is precisely determined by parallax.
 \caption{
 The posterior PDF over parameters \vx, \vy, \vz\ and $\ln$(distance) for a
     Kepler target chosen at random: KIC \kicstar.
-This figure shows that the velocity parameters are tightly correlated.
+This figure shows that the velocity parameters are correlated and the star's
+    posterior is elongated in \vy.
     }
   \centering
-    \includegraphics[width=1\textwidth]{posterior}
+    \includegraphics[width=.7\textwidth]{posterior}
 \label{fig:posterior}
 \end{figure}

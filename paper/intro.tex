@@ -1,26 +1,26 @@
 \section{Introduction}
 
-Gaia has revolutionized the field of Galactic dynamics by providing precise
-positions and proper motions for an unprecendented number of stars in the
-Milky Way.
+Gaia has revolutionized the field of Galactic dynamics by providing positions,
+parallaxes and proper motions with unparalleled precision, for a large number
+of Milky Way stars.
 So far, Gaia has provided positions, parallaxes and proper motions for around
 1.7 billion stars, and radial velocities (RVs) for more than 7 million stars
 across its 1st, 2nd and early-3rd data releases \citep{gaia, gaia_dr2,
 gaia_edr3}.
-In combination, proper motion, position, and RV measurements provide full
-3-dimensional velocity information for any given star, which can be used to
-calculate its Galactic orbit.
+In combination, proper motion, position, and RV measurements provide full 6D
+phase-space information for any given star, which can be used to calculate its
+Galactic orbit.
 % 3D stellar velocities are useful for calculating the relative space-motions of
 % stars, and for revealing their Galactic orbits.
 The orbits of stars are useful for kinematic age-dating, for exploring the
 secular dynamical evolution of the Galaxy, for differentiating between nascent
-accreted stellar populations in the Milky Way's halo, and many other
+and accreted stellar populations in the Milky Way's halo, and many other
 applications.
 
 % Motivation
 Our main motivation for calculating the velocities of Kepler targets is to use
-Galactic kinematics to study their evolution, either by using vertical
-velocity dispersion as an age proxy, or by calculating their ages via an
+Galactic kinematics to study stellar evolution, either by using vertical
+velocity dispersion as an age proxy, or by calculating stellar ages via an
 age-velocity dispersion relation \citep[\eg][]{angus2020, lu2021}.
 The ages of stars, particularly GKM stars on the main sequence, are difficult
 to measure because their luminosities and temperatures evolve slowly
@@ -32,10 +32,10 @@ out-of-plane, or vertical, velocity \citep[\eg][]{stark1989, stark2005,
 aumer2009, martig2014, aumer2016}.
 In contrast, the vertical velocities of older stars are observed to be larger
 in magnitude on average \citep{stromberg1946, wielen1977, nordstrom2004,
-holmberg2007, holmberg2009, aumer2009, casagrande2011, ting2019, yu2018}.
+holmberg2007, holmberg2009, aumer2009, casagrande2011, yu2018, ting2019}.
 Galaxy formation simulations indicate that stars initially form from
 dynamically hot gas, which settles into a cooler thin disk over time during
-the early stages of Galactic evolution \racomment{(citations)}.
+the early stages of Galactic evolution \citep[\eg][]{bird2013}.
 After this initial cooling phase, giant molecular clouds and Galactic spiral
 arms dynamically `reheat' the orbits of stars over time.
 % There are two possible explanations for this observed increase in velocity
@@ -44,7 +44,7 @@ arms dynamically `reheat' the orbits of stars over time.
 % \citep[see][for a review of secular evolution in the MW]{sellwood2014}, or
 % stars formed kinematically `hotter' in the past \citep[\eg][]{bird2013}.
 Regardless of the exact history of dynamical cooling and heating, older
-populations of stars are known to have larger velocity dispersions than
+populations of stars are observed to have larger velocity dispersions than
 younger populations.
 This behavior is codified by empirically-calibrated Age-Velocity dispersion
 Relations (AVRs), which typically express the relationship between age and
@@ -56,7 +56,7 @@ However, AVRs are usually calibrated in 3D Galactocentric velocities, and most
 commonly in vertical velocity: \vz\ or W.
 Regardless of the coordinate system, some transformation from RV and proper
 motion in equatorial coordinates is usually required to calculate the
-kinematic ages of stars.
+kinematic ages of stars using an AVR.
 
 RV measurements, combined with positions, parallaxes, and proper motions
 measured in the plane of the sky, complete the full set of information needed
@@ -77,54 +77,58 @@ Transforming to any other coordinate system, a star's velocity probability
 density function will change shape via a transformation that depends on its
 position.
 
-We provide 3D velocities in \vx, \vy, and \vz\ for Kepler targets in this
-work, however for kinematic age-dating vertical velocity, \vz, is most useful.
-% For example, as described above the {\it vertical} velocities of stars (\vz\
+% , however for kinematic age-dating vertical velocity, \vz, is most
+% useful.
+% % For example, as described above the {\it vertical} velocities of stars (\vz\
+% % or $W$) are often used to study the secular orbital heating of stars in the
+% % Milky Way's disk \citep[\eg][]{beane2018, yu2018, ting2019, mackereth2019}.
+% Unless the radial velocity direction precisely coincides with the vertical
+% axis of the Milky Way, \ie\ a star lies along the $Z$ axis of the
+% Galactocentric coordinate system, we can still extract some \vz\ information
+% from Gaia proper motions alone.
+% Of course, the lower the Galactic latitude of a star, the better the
+% constraint on its \vz\ will be (hence why the Kepler field, located at low
+% latitude, is particularly useful for vertical velocity studies).
+% In some cases, the velocities of stars in particular directions are more
+% useful than others, for example, the {\it vertical} velocities of stars (\vz\
 % or $W$) are often used to study the secular orbital heating of stars in the
 % Milky Way's disk \citep[\eg][]{beane2018, yu2018, ting2019, mackereth2019}.
-Unless the radial velocity direction precisely coincides with the vertical
-axis of the Milky Way, \ie\ a star lies along the $Z$ axis of the
-Galactocentric coordinate system, we can still extract some \vz\ information
-from Gaia proper motions alone.
-Of course, the lower the Galactic latitude of a star, the better the
-constraint on its \vz\ will be (hence why the Kepler field, located at low
-latitude, is particularly useful for vertical velocity studies).
-In some cases, the velocities of stars in particular directions are more
-useful than others, for example, the {\it vertical} velocities of stars (\vz\
-or $W$) are often used to study the secular orbital heating of stars in the
-Milky Way's disk \citep[\eg][]{beane2018, yu2018, ting2019, mackereth2019}.
-Unless the radial velocity direction precisely coincides with the vertical
-axis of the Milky Way, \ie\ a star lies along the $Z$ axis of the
-Galactocentric coordinate system, we can still extract some \vz\ information
-from Gaia proper motions alone.
-Of course, the lower the Galactic latitude of a star, the better the
-constraint on its \vz\ will be (hence why the Kepler field, located at low
-latitude, is particularly useful for vertical velocity studies).
+% Unless the radial velocity direction precisely coincides with the vertical
+% axis of the Milky Way, \ie\ a star lies along the $Z$ axis of the
+% Galactocentric coordinate system, we can still extract some \vz\ information
+% from Gaia proper motions alone.
+% Of course, the lower the Galactic latitude of a star, the better the
+% constraint on its \vz\ will be (hence why the Kepler field, located at low
+% latitude, is particularly useful for vertical velocity studies).
 
-Empirical, or semi-empirical models that relate the magnetic activity or
-rotation periods of stars to their age can be used to infer the ages of some
-low-mass dwarfs \citep[\eg][]{skumanich1972, barnes2003, barnes2007,
-mamajek2008, matt2015, angus2019, claytor2020},
-however, these empirical relations are often poorly calibrated for K and M
-dwarfs and old stars \citep[\eg][]{angus2015, vansaders2016, vansaders2018,
-metcalfe2019, curtis2020, spada2019, angus2020}.
+In this work, we provide 3D velocities in \vx, \vy, and \vz\ for Kepler
+targets.
+Our motivation is chiefly to calculate vertical velocities (\vz) which can
+then be used to calculate the ages of stellar populations via an AVR, from
+which other empirical age-dating methods can be calibrated.
+For example, empirical or semi-empirical models that relate the magnetic
+activity or rotation periods of stars to their age can be used to infer the
+ages of some low-mass dwarfs \citep[\eg][]{skumanich1972, barnes2003,
+barnes2007, mamajek2008, matt2012, angus2019, claytor2020}, however, these
+empirical relations are often poorly calibrated for low-mass and old stars
+\citep[\eg][]{angus2015, vansaders2016, vansaders2018, metcalfe2019,
+curtis2020, spada2019, angus2020}.
 In \citet{angus2020} we used the velocities of Kepler stars in the direction
 of Galactic latitude, \vb\, as a proxy for vertical velocity.
 \vb\ can be calculated without an RV and it is similar to \vz\ for many Kepler
 stars because the Kepler field lies at low Galactic latitude.
-We used the velocity dispersions of stars as an age indicator, and used them
-to explore the evolution of stellar rotation rates.
-In \citet{lu2021} we used {\it vertical} velocity dispersion to calculate
-kinematic ages for Kepler stars with measured rotation periods using an
-age-velocity dispersion relation (AVR).
+We used the \vb\ velocity dispersions of stars as an age proxy to explore the
+evolution of stellar rotation rates.
+In \citet{lu2021} we used {\it vertical} velocity dispersion (\vz) to
+calculate kinematic ages for Kepler stars with measured rotation periods using
+an age-velocity dispersion relation (AVR).
 Those vertical velocities were inferred by marginalizing over missing RVs
 using the method we describe in this paper.
 To expand upon that work and provide an opportunity to apply kinematic
 age-dating to more stars, we here calculate the 3D velocities of {\it all}
 Kepler targets.
-Although we focus on the Kepler field here, the methodology presented in this
-paper is applicable to stars across the sky, provided a suitable prior is
-used.
+Although we focus on the Kepler field, the methodology presented in this paper
+is applicable to stars across the sky if a suitable prior is used.
 
 There are several other applications for which the 3D velocity of a star is
 useful, even if its velocity is not equally well-constrained in every
@@ -138,12 +142,34 @@ completely different RVs, their method would incorrectly flag them as comoving
 stars, however in general the Gaia proper motion precision is sufficiently
 high to make these cases rare.
 
-AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
-\vz\ or $UVW$), and these velocities can only be calculated with full 6D
-positional and velocity information.
-Most Kepler stars do not currently have RV measurements.
-Some targets will have RVs released in Gaia's third data release, but many
-will not.
+Another work that predicts 3D velocities of Gaia targets is
+\citet{dropulic2021}, in which the velocities of Gaia stars are predicted with
+a neural network.
+The network is trained on the velocities of stars {\it with} RVs and used to
+predict the velocities of stars without.
+The method we present here seeks to solve the same problem via a different
+methodology: we use Bayesian inference instead of machine learning.
+It is not possible to draw a direct comparison between their method and ours
+because we use different coordinate systems (we use Cartesian, and they use
+cylindrical coordinates), and because we focus on different populations --
+they predict velocities for the entire Gaia catalog, whereas we concentrate on
+a small part of the sky.
+The two approaches will be useful for different scientific applications, and
+it is extremely useful to have multiple approaches to solving this fundamental
+problem in astronomy.
+% Whereas our velocities are limited by the lack of information in the 6th
+% dimension, theirs benefit from learned patterns in the data, and the precision
+% of their resulting velocities are not fundamentally limited in the same way as
+% ours are.
+% However, there may be some science cases where a simple Bayesian approach,
+% like the one we present here, is more suitable.
+
+% AVRs are usually calibrated in Galactocentric velocity coordinates (\vx, \vy,
+% \vz\ or $UVW$), and these velocities can only be calculated with full 6D
+% positional and velocity information.
+% Most Kepler stars do not currently have RV measurements.
+% Some targets will have RVs released in Gaia's third data release, but many
+% will not.
 % In \citep{angus2020} we used velocity in the direction of Galactic latitude
 % (\vb) as a stand-in for \vz\ because, in the {\it Galactic} coordinate system,
 % velocities can be calculated from 3D positions and {\it 2D} proper motions.

@@ -3,8 +3,9 @@
 
 \subsection{Inferred velocities}
 
-Figure \ref{fig:results} shows the distribution of velocities, inferred for
-5000 randomly selected Kepler stars.
+In this section we assess the quality of the 3D stellar velocities we infer.
+Figure \ref{fig:results} shows the distribution of stellar velocities inferred
+for 5000 randomly selected Kepler stars.
 The 2D distributions of inferred stellar velocities are plotted in the
 lower-left panels, with black contours indicating the stellar number density.
 The red contours in these panels show the marginal projections of the
@@ -24,17 +25,18 @@ In each panel, the distribution of inferred velocities is similar to the
 distribution of directly-measured velocities; the velocities of stars
 calculated with and without RVs are broadly similar.
 
-Among stars with measured RVs, \vy\ and \vz\ are slightly positively
-correlated, \ie\ stars with larger \vy\ tend to have larger \vz.
-However, the inferred velocities have the opposite trend: stars with larger
-\vy\ have a smaller \vz.
+% Among stars with measured RVs, \vy\ and \vz\ are slightly positively
+% correlated, \ie\ stars with larger \vy\ tend to have larger \vz.
+There is a slight negative correlation between inferred \vy\ and \vz\
+velocities, which is visible in the central panel of figure \ref{fig:results}.
 This negative correlation is not seen in the prior, nor is it apparent in the
 posteriors of individual stars: figure \ref{fig:posterior} shows that the \vy\
-and \vz\ parameters are positively correlated for KIC \kicstar.
-The reason for the negative correlation seen in the population of stars is due
-to the specific orientation of the Kepler field.
-This orientation creates a negative correlation in the population of stars,
-that is not apparent in the posteriors of individual stars.
+and \vz\ parameters are {\it positively} correlated for KIC \kicstar.
+The reason for the negative correlation seen in the population of inferred
+velocities is caused by the specific orientation of the Kepler field which
+creates a slight degeneracy between \vy\ and \vz.
+% This orientation creates a negative correlation in the population of stars,
+% that is not apparent in the posteriors of individual stars.
 % To an observer looking at Kepler field, a star with either a positive \vz\ or
 % a {\it negative} \vy\ would appear to move in the direction of positive \vz,
 % when projected onto the sky.
@@ -72,7 +74,7 @@ histogram shows the distribution of velocities for stars with RVs,
 and the orange lines show the 1D marginal Gaussian prior distributions.
 }
   \centering
-    \includegraphics[width=1\textwidth]{results}
+    \includegraphics[width=.7\textwidth]{results}
 \label{fig:results}
 \end{figure}
 To further validate our method, we compare inferred velocities with
@@ -88,7 +90,6 @@ distances we inferred, compared with those calculated from measured RVs, for
     \includegraphics[width=1\textwidth]{residuals}
 \label{fig:residuals}
 \end{figure}
-
 The three velocity components, \vx, \vy\ and \vz\ were recovered with
 differing levels of precision: \vx\ and \vz\ are inferred more precisely than
 \vy.
@@ -98,48 +99,49 @@ The velocities of low-\vy\ stars are underestimated and the velocities of
 high-\vy\ stars are overestimated.
 This is because there is little information to constrain the \vy\ velocities
 and the prior pulls the \vy\ velocities toward the center of the distribution.
-The \vx, \vy\ and \vz\ velocities of stars are correlated.
-This means that stars with an inaccurate \vy\ also have slightly accurate \vz\
-and, to a lesser degree, inaccurate \vx.
+The \vx, \vy\ and \vz\ velocities of stars are correlated, which means that
+stars with an inaccurate \vy\ also have slightly accurate \vz\ and \vx.
 Despite slight systematic inaccuracies, Around 68\% of the inferred velocities
 are within 1$\sigma$ of their true velocities; the inferred velocities are
 consistent with the true velocities.
 
-Table \ref{velocity_table} contains the inferred 3D velocities of stars in our
-sample, in addition to their positional and velocity information from
-Gaia EDR3, LAMOST DR5 and APOGEE DR16.
-A sample of this table is displayed here, and the full machine-readable table
-is available online.
+We provide a table of the directly-calculated, and indirectly-inferred 3D
+velocities of stars observed by Kepler, in addition to their positional and
+velocity information from Gaia EDR3, LAMOST DR5 and APOGEE DR16.
+A description of each column included in that table is provided in table
+\ref{tab:columns}.
+% A sample of this table is displayed here, and the full machine-readable table
+% is available online.
+
+% \begin{table}[h!]
+%   \begin{center}
+%       \caption{
+% The velocities and kinematic information for the \nstars\ Kepler targets in
+%       our sample.
+%       The full list of columns is provided in table \ref{tab:columns} and the
+%       full version is published in its entirey online.
+%       }
+% \label{tab:data}
+% \begin{tabular}{cccccccccc}
+%     KIC ID & DR3 source ID & $\alpha$ & $\delta$ & $\bar{\omega}$
+%     & Distance & $\mu_{\alpha}$ & $\mu_\delta$ & RV (Gaia) & ... \\
+%     & & $(^\circ)$ & $(^\circ)$ & mas & kpc & mas/yr & mas/yr & km/s & \\
+%     {\tt kic$\_$id} & {\tt source$\_$id} & {\tt ra} & {\tt dec} &
+%     {\tt parallax} & {\tt r$\_$est} & {\tt pmra} & {\tt pmdec} \\
+% \hline
+% ... & ... & ... & ... & ... & ... \\
+% \end{tabular}
+% \end{center}
+% \tablecomments{This table is published in its entirety in a machine-readable format.
+%       A portion is shown here for guidance regarding its form and content.}
+% \ref{tab:data}
+% \end{table}
 
 \begin{table}[h!]
   \begin{center}
       \caption{
-The velocities and kinematic information for the \nstars\ Kepler targets in
-      our sample.
-      The full list of columns is provided in table \ref{tab:columns} and the
-      full version is published in its entirey online.
-      }
-\label{tab:data}
-\begin{tabular}{cccccccccc}
-    KIC ID & DR3 source ID & $\alpha$ & $\delta$ & $\bar{\omega}$
-    & Distance & $\mu_{\alpha}$ & $\mu_\delta$ & RV (Gaia) & ... \\
-    & & $(^\circ)$ & $(^\circ)$ & mas & kpc & mas/yr & mas/yr & km/s & \\
-    {\tt kic$\_$id} & {\tt source$\_$id} & {\tt ra} & {\tt dec} &
-    {\tt parallax} & {\tt r$\_$est} & {\tt pmra} & {\tt pmdec} \\
-\hline
-... & ... & ... & ... & ... & ... \\
-\end{tabular}
-\end{center}
-\tablecomments{This table is published in its entirety in a machine-readable format.
-      A portion is shown here for guidance regarding its form and content.}
-\ref{tab:data}
-\end{table}
-
-\begin{table}[h!]
-  \begin{center}
-      \caption{
-The full list of columns in table \ref{tab:data}, which provides the
-velocities and kinematic information for stars in the Kepler field.
+The list of columns in the data table published online, which provides
+      the velocities and kinematic information for stars in the Kepler field.
       }
 \label{tab:columns}
 \begin{tabular}{cc}
@@ -151,15 +153,30 @@ velocities and kinematic information for stars in the Kepler field.
     {\tt dec, dec$\_$error} & Gaia EDR3 declination in degrees ($^\circ$). \\
     {\tt parallax, parallax$\_$error} & Gaia EDR3 parallax (mas). \\
     {\tt r$\_$est, r$\_$est$\_$err} & Distance (parsec), provided by
-    \citet{bailer-jones_2021}. \\
+    \citet{bailer-jones2021}. \\
     {\tt pmra, pmra$\_$error} & Gaia EDR3 proper motion in right ascension (mas/yr). \\
     {\tt pmdec, pmdec$\_$error} & Gaia EDR3 proper motion in declination (mas/yr). \\
     {\tt gaia$\_$rv, gaia$\_$rv$\_$error} & Gaia DR2 radial velocity (km/s) \\
     {\tt apogee$\_$rv, apogee$\_$rv$\_$error} & APOGEE DR16 radial velocity (km/s) \\
     {\tt lamost$\_$rv, lamost$\_$rv$\_$error} & LAMOST DR5 radial velocity (km/s) \\
-    {\tt vx$\_$calc} & The \vx\ velocity (km/s) calculated using RV. \\
-    {\tt vx$\_$inferred, vx$\_$inferred$\_$error} & The \vx\ velocity (km/s) inferred without RV. \\
-    etc & etc \\
+    {\tt vx$\_$calc} & The \vx\ velocity calculated using RV (km/s). \\
+    {\tt vx$\_$inferred, vx$\_$inferred$\_$error} & The median and standard
+    deviation of \vx\ velocity samples, inferred without RV (km/s). \\
+    {\tt vy$\_$calc} & The \vy\ velocity calculated using RV (km/s). \\
+    {\tt vy$\_$inferred, vy$\_$inferred$\_$error} & The median and standard
+    deviation of \vy\ velocity samples, inferred without RV (km/s). \\
+    {\tt vz$\_$calc} & The \vz\ velocity calculated using RV (km/s). \\
+    {\tt vz$\_$inferred, vz$\_$inferred$\_$error} & The median and standard
+    deviation of \vz\ velocity samples, inferred without RV (km/s). \\
+    {\tt vxvy$\_$covar} & The covariance between \vx\ and \vy\ samples. \\
+    {\tt vxvz$\_$covar} & The covariance between \vx\ and \vz\ samples. \\
+    {\tt vxlnd$\_$covar} & The covariance between \vx\ and $\ln$(distance)
+    samples. \\
+    {\tt vyvz$\_$covar} & The covariance between \vy\ and \vz\ samples. \\
+    {\tt vylnd$\_$covar} & The covariance between \vy\ and $\ln$(distance)
+    samples. \\
+    {\tt vzlnd$\_$covar} & The covariance between \vz\ and $\ln$(distance)
+    samples. \\
 \end{tabular}
 \end{center}
 \end{table}

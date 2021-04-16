@@ -2,28 +2,29 @@
 
 This paper describes a method for inferring the 3D velocities of stars by
 marginalizing over missing radial velocity measurements.
-We focused on stars in the Kepler field, because of its potential for studying
-stellar evolution via kinematic age-dating, and because of its particular
+We focused on stars in the Kepler field because of its potential for studying
+stellar evolution via kinematic age-dating as well as its advantageous
 orientation.
 Located at low Galactic latitude, the Kepler field is almost aligned with the
 $y$-axis of the Galactocentric coordinate system.
 This means that 2D Gaia proper motion measurements alone are sufficient to
 tightly constrain the \vx\ and \vz\ velocities of Kepler stars.
-Without RV measurements however, the \vy\ velocities  of Kepler stars are
+Without RV measurements, the \vy\ velocities  of Kepler stars are
 poorly constrained.
 However, given that many age-velocity dispersion relations (AVR) are
 calibrated in {\it vertical} velocity, \vz\ is the main parameter of interest
-for kinematic age-dating.
+for kinematic age-dating and it is precisely constrained by our method: \vz\
+is inferred with a median precision of \vzprecision\ kms$^{-1}$.
 
-We compiled crossmatches of the Kepler, Gaia EDR3, LAMOST DR5 and APOGEE DR16
-catalogs.
+We compiled kinematic data for Kepler targets from the, Gaia EDR3, LAMOST DR5
+and APOGEE DR16 catalogs.
 Gaia EDR3 provided parallaxes, positions and proper motions for the stars in
-our sample, and Gaia DR2 provided RVs for \ngaia\ stars.
-LAMOST DR5 provided \nlamost\ RVs for stars in our sample, and APOGEE DR16
-provided \napogee.
-Of the three spectroscopic surveys, APOGEE has the highest resolution,
-followed by Gaia, then LAMOST, so we adopted RVs in that priority-order
-where stars had multiple RV measurements available.
+our sample.
+Altogether, Gaia DR2, LAMOST DR5, and APOGEE DR16 provided RVs for \nrv\
+Kepler targets.
+% Of the three spectroscopic surveys, APOGEE has the highest resolution,
+% followed by Gaia, then LAMOST, so we adopted RVs in that priority-order
+% where stars had multiple RV measurements available.
 
 We calculated \vx, \vy, and \vz\ for the \nrv\ stars in our sample with RVs
 using {\tt astropy}.
@@ -48,7 +49,11 @@ for Kepler stars.
 A caveat of our inferred velocities is therefore that the \vy\ velocities may
 not be accurate for faint stars in the Kepler field.
 
-We provide a table of \vx, \vy, \vz, and $\ln$(distance) for a total of
-\nstars\ stars observed by Kepler.
-This table also contains the positional and velocitiy information from Gaia
-DR2, Gaia EDR3, LAMOST DR5, and APOGEE DR16.
+Overall, we found that the distribution of inferred velocities for Kepler
+targets is similar to the velocity distribution of stars with measured RVs.
+The median precision of inferred \vx, \vy, and \vz\ velocities is
+\vxprecision, \vyprecision, and \vzprecision\ kms$^{-1}$ respectively.
+We provide a table of parameters \vx, \vy, \vz, and $\ln$(distance), with
+uncertainties and covariances, for a total of \nstars\ Kepler targets.
+This table also contains the positional and velocity information from Gaia
+DR2, Gaia EDR3, LAMOST DR5, and APOGEE DR16 used in this project.
