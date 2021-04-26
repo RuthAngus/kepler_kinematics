@@ -20,8 +20,47 @@ import astropy.coordinates as coord
 coord.galactocentric_frame_defaults.set('v4.0')
 
 
-def load_and_merge_data():
-    # Load Gaia-Kepler crossmatch.
+# def load_and_merge_data():
+#     # Load Gaia-Kepler crossmatch.
+#     with fits.open("../data/kepler_dr2_1arcsec.fits") as data:
+#         gaia = pd.DataFrame(data[1].data, dtype="float64")
+#     m = gaia.parallax.values > 0
+#     gaia = gaia.iloc[m]
+
+#     # Round RVs down to 6dp.
+#     gaia["ra_6dp"] = np.round(gaia.ra.values, 6)
+#     gaia["dec_6dp"] = np.round(gaia.dec.values, 6)
+
+#     # Add LAMOST
+#     # File created using the LAMOST DR5 website: http://dr5.lamost.org/search
+#     lamost = pd.read_csv("../data/gaia-kepler-lamost_snr.csv")
+
+#     # Remove one star with a giant LAMOST RV errorbar
+#     m = abs(lamost.stellar_rv_err.values) < 100
+#     lamost = lamost.iloc[m]
+
+#     # Merge Gaia and LAMOST on (rounded) RA and dec
+#     lamost["ra_6dp"] = lamost.inputobjs_input_ra.values
+#     lamost["dec_6dp"] = lamost.inputobjs_input_dec.values
+#     lamost_gaia = pd.merge(gaia, lamost, on=["ra_6dp", "dec_6dp"],
+#                            how="left", suffixes=["", "_lamost"])
+#     lamost_gaia = lamost_gaia.drop_duplicates(subset="source_id")
+
+#     # Load apogee
+#     tbl = Table.read("../data/apogeedr16_stars.fits", format='fits')
+#     names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
+#     apo = tbl[names].to_pandas()
+
+#     apodf = pd.merge(apo, lamost_gaia, how="right", left_on="GAIA_SOURCE_ID",
+#                      right_on="source_id", suffixes=["_apogee", ""])
+#     apodf = apodf.drop_duplicates(subset="source_id")
+#     return apodf
+
+
+def load_and_merge_data(edr3=True):
+
+    # Load Gaia-Kepler crossmatch
+    print("Loading Gaia-Kepler crossmatch...")
     with fits.open("../data/kepler_dr2_1arcsec.fits") as data:
         gaia = pd.DataFrame(data[1].data, dtype="float64")
     m = gaia.parallax.values > 0
@@ -33,6 +72,7 @@ def load_and_merge_data():
 
     # Add LAMOST
     # File created using the LAMOST DR5 website: http://dr5.lamost.org/search
+    print("Loading Lamost")
     lamost = pd.read_csv("../data/gaia-kepler-lamost_snr.csv")
 
     # Remove one star with a giant LAMOST RV errorbar
@@ -42,17 +82,85 @@ def load_and_merge_data():
     # Merge Gaia and LAMOST on (rounded) RA and dec
     lamost["ra_6dp"] = lamost.inputobjs_input_ra.values
     lamost["dec_6dp"] = lamost.inputobjs_input_dec.values
-    lamost_gaia = pd.merge(gaia, lamost, on=["ra_6dp", "dec_6dp"],
-                           how="left", suffixes=["", "_lamost"])
+
+    lamost_stripped = pd.DataFrame(dict({
+        "ra_6dp": lamost.inputobjs_input_ra.values,
+        "dec_6dp": lamost.inputobjs_input_dec.values,
+        "stellar_rv": lamost.stellar_rv.values,
+        "stellar_rv_err": lamost.stellar_rv_err.values}))
+
+    # If you want edr3, just match on kepid then match again with edr3.
+    if edr3:
+        print("Merging LAMOST and Gaia DR3")
+        gaia_stripped = pd.DataFrame(dict({"ra_6dp": gaia["ra_6dp"],
+                                           "dec_6dp": gaia["dec_6dp"],
+                                           "kepid": gaia["kepid"]}))
+        lamost_gaia = pd.merge(gaia_stripped, lamost_stripped,
+                               on=["ra_6dp", "dec_6dp"],
+                               how="left")
+
+        with fits.open("../../data/kepler_edr3_1arcsec.fits") as data:
+            gaia3 = pd.DataFrame(data[1].data, dtype="float64")
+        m = gaia3.parallax.values > 0
+        gaia3 = gaia3.iloc[m]
+
+        # Merge DR2 and 3
+        gaia23 = pd.merge(gaia_stripped, gaia3, on="kepid")
+
+        # Merge DR3 and lamost
+        lamost_gaia = pd.merge(gaia23, lamost, on=["ra_6dp", "dec_6dp"],
+                               how="left", suffixes=["", "_lamost"])
+        lamost_gaia["radial_velocity"] = lamost_gaia["dr2_radial_velocity"]
+        lamost_gaia["radial_velocity_error"] = lamost_gaia[
+            "dr2_radial_velocity_error"]
+
+    else:
+        print("Merging LAMOST and Gaia DR2")
+        lamost_gaia = pd.merge(gaia, lamost_stripped,
+                               on=["ra_6dp", "dec_6dp"],
+                               how="left", suffixes=["", "_lamost"])
+
     lamost_gaia = lamost_gaia.drop_duplicates(subset="source_id")
 
     # Load apogee
-    tbl = Table.read("../data/apogeedr16_stars.fits", format='fits')
-    names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
-    apo = tbl[names].to_pandas()
+    print("Loading APOGEE")
+    if edr3:
 
-    apodf = pd.merge(apo, lamost_gaia, how="right", left_on="GAIA_SOURCE_ID",
-                     right_on="source_id", suffixes=["_apogee", ""])
+        tbl = Table.read("../data/apogee_dr16_tmass_edr3_xmatch.fits",
+                         format='fits')
+        names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
+        apo3 = tbl[names].to_pandas()
+
+        tbl = Table.read("../data/apogeedr16_stars.fits", format='fits')
+        names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
+        apo2 = tbl[names].to_pandas()
+
+        # crossmatch on dr2 source id.
+        apo23 = pd.merge(apo2, apo3, how="left", left_on="GAIA_SOURCE_ID",
+                         right_on="dr2_source_id")
+        apo23 = apo23.drop_duplicates(subset="dr3_source_id")
+
+        # Only keep what you need from apogee
+        apo_stripped = pd.DataFrame(dict({
+            "dr3_source_id": apo23.dr3_source_id.values,
+            "OBSVHELIO_AVG": apo23.OBSVHELIO_AVG.values,
+            "OBSVERR": apo23.OBSVERR.values}))
+
+        apodf = pd.merge(apo_stripped, lamost_gaia, how="right",
+                         left_on="dr3_source_id", right_on="source_id",
+                         suffixes=["_apogee", ""])
+        print(np.shape(lamost_gaia), np.shape(apodf))
+
+    else:
+        tbl = Table.read("../data/apogeedr16_stars.fits", format='fits')
+        names = [name for name in tbl.colnames if len(tbl[name].shape) <= 1]
+        apo = tbl[names].to_pandas()
+
+        print("Merging Gaia and Apogee")
+        apodf = pd.merge(apo, lamost_gaia, how="right",
+                         left_on="GAIA_SOURCE_ID",
+                         right_on="source_id", suffixes=["_apogee", ""])
+
     apodf = apodf.drop_duplicates(subset="source_id")
     return apodf
 
