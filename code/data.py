@@ -94,7 +94,10 @@ def load_and_merge_data(edr3=True):
         print("Merging LAMOST and Gaia DR3")
         gaia_stripped = pd.DataFrame(dict({"ra_6dp": gaia["ra_6dp"],
                                            "dec_6dp": gaia["dec_6dp"],
-                                           "kepid": gaia["kepid"]}))
+                                           "kepid": gaia["kepid"],
+                                           "r_est": gaia["r_est"],
+                                           "r_lo": gaia["r_lo"],
+                                           "r_hi": gaia["r_hi"]}))
         lamost_gaia = pd.merge(gaia_stripped, lamost_stripped,
                                on=["ra_6dp", "dec_6dp"],
                                how="left")
