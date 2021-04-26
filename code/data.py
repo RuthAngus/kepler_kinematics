@@ -386,4 +386,5 @@ if __name__ == "__main__":
     np.random.seed(42)
     df = df.sample(frac=1)
 
+    df = df.drop_duplicates(subset="source_id")
     df.to_csv(fname)
