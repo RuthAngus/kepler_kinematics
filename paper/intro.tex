@@ -18,34 +18,32 @@ and accreted stellar populations in the Milky Way's halo, and many other
 applications.
 
 % Motivation
-Our main motivation for calculating the velocities of Kepler targets is to use
-Galactic kinematics to study stellar evolution, either by using vertical
-velocity dispersion as an age proxy, or by calculating stellar ages via an
-age-velocity dispersion relation \citep[\eg][]{angus2020, lu2021}.
+One particular motivation for calculating the velocities of Kepler targets is
+to use Galactic kinematics to study stellar evolution, either by using
+vertical velocity dispersion as an age proxy, or by calculating stellar ages
+via an age-velocity dispersion relation \citep[\eg][]{angus2020, lu2021}.
 The ages of stars, particularly GKM stars on the main sequence, are difficult
 to measure because their luminosities and temperatures evolve slowly
 \citep[see][for a review of stellar ages]{soderblom2010}.
 Galactic kinematics provides an alternative, statistical dating method.
 
-The star forming molecular gas clouds observed in the Milky Way have a low
-out-of-plane, or vertical, velocity \citep[\eg][]{stark1989, stark2005,
-aumer2009, martig2014, aumer2016}.
-In contrast, the vertical velocities of older stars are observed to be larger
-in magnitude on average \citep{stromberg1946, wielen1977, nordstrom2004,
-holmberg2007, holmberg2009, aumer2009, casagrande2011, yu2018, ting2019}.
-Galaxy formation simulations indicate that stars initially form from
-dynamically hot gas, which settles into a cooler thin disk over time during
-the early stages of Galactic evolution \citep[\eg][]{bird2013}.
-After this initial cooling phase, giant molecular clouds and Galactic spiral
-arms dynamically `reheat' the orbits of stars over time.
-% There are two possible explanations for this observed increase in velocity
-% dispersion with age: either stars are born kinematically `cool' and their
-% orbits are heated over time via interactions with giant molecular clouds
-% \citep[see][for a review of secular evolution in the MW]{sellwood2014}, or
-% stars formed kinematically `hotter' in the past \citep[\eg][]{bird2013}.
-Regardless of the exact history of dynamical cooling and heating, older
-populations of stars are observed to have larger velocity dispersions than
-younger populations.
+% The star forming molecular gas clouds observed in the Milky Way have a low
+% out-of-plane, or vertical, velocity \citep[\eg][]{stark1989, stark2005,
+% aumer2009, martig2014, aumer2016}.
+% In contrast, the vertical velocities of older stars are observed to be larger
+% in magnitude on average \citep{stromberg1946, wielen1977, nordstrom2004,
+% holmberg2007, holmberg2009, aumer2009, casagrande2011, yu2018, ting2019}.
+% Galaxy formation simulations indicate that stars initially form from
+% dynamically hot gas, which settles into a cooler thin disk over time during
+% the early stages of Galactic evolution \citep[\eg][]{bird2013}.
+% After this initial cooling phase, giant molecular clouds and Galactic spiral
+% arms dynamically `reheat' the orbits of stars over time.
+% Regardless of the exact history of dynamical cooling and heating,.
+Older populations of stars are observed to have larger velocity dispersions
+than younger populations, and this is generally thought to be caused by
+dynamical heating of the Galactic disc by giant molecular clouds and spiral
+arms \citep[\eg][]{stromberg1946, wielen1977, nordstrom2004, holmberg2007,
+holmberg2009, aumer2009, casagrande2011, yu2018, ting2019}.
 This behavior is codified by empirically-calibrated Age-Velocity dispersion
 Relations (AVRs), which typically express the relationship between age and
 velocity dispersion as a power law: $\sigma_v \propto t^\beta$, with free
@@ -61,13 +59,16 @@ kinematic ages of stars using an AVR.
 RV measurements, combined with positions, parallaxes, and proper motions
 measured in the plane of the sky, complete the full set of information needed
 to calculate 3D stellar velocities.
-However, RV can only be measured from a stellar spectrum -- an observation
-that requires a significant number of photons and is thus expensive to obtain,
-particularly for faint stars.
-Fortunately however, Gaia proper motion measurements are of such incredible
-precision that, even without an RV measurement, the 3D velocity of a star can
-still be inferred by marginalizing over radial velocity.
-This will often provide a velocity that is not equally well-constrained in
+However, RV can generally only be measured from a stellar spectrum -- an
+observation that requires a significant number of photons and is thus
+expensive to obtain, particularly for faint stars.
+Fortunately however, the bulk circular velocity of the Galactic disc allows
+stellar velocities to be inferred by using an informative prior that is
+constructed from the velocities of stars with full 6D phase-space information.
+% motions of stars in the Milky Way can Gaia proper motion measurements are of such incredible
+% precision that, even without an RV measurement, the 3D velocity of a star can
+% still be inferred by marginalizing over radial velocity.
+This will often result in a velocity that is not equally well-constrained in
 every direction, \ie\ the probability density function of a star's velocity
 will be an oblate spheroid in 3D.
 In the equatorial coordinate system, a star's velocity will be tightly
@@ -143,13 +144,13 @@ stars, however in general the Gaia proper motion precision is sufficiently
 high to make these cases rare.
 
 Another work that predicts 3D velocities of Gaia targets is
-\citet{dropulic2021}, in which the velocities of Gaia stars are predicted with
-a neural network.
+\citet{dropulic2021}, in which the velocities of mock Gaia stars are predicted
+with a neural network.
 The network is trained on the velocities of stars {\it with} RVs and used to
 predict the velocities of stars without.
 The method we present here seeks to solve the same problem via a different
-methodology: we use Bayesian inference instead of machine learning.
-It is not possible to draw a direct comparison between their method and ours
+methodology: we use Bayesian inference instead of a neural network.
+It is difficult to draw a direct comparison between their method and ours
 because we use different coordinate systems (we use Cartesian, and they use
 cylindrical coordinates), and because we focus on different populations --
 they predict velocities for the entire Gaia catalog, whereas we concentrate on
