@@ -16,13 +16,13 @@ stellar catalog also using a 1'' radius \citep{cui2012, apogee_dr16,
 xiang2019}.
 We removed stars with a Gaia parallax $<$ 0, parallax signal-to-noise ratio
 $<$ 10, or Gaia astrometric excess noise $>$ 5.
-After applying these cuts our total number of targets was \nstars\ stars:
-\ngaia\ with RVs from Gaia DR2, \nlamost\ from LAMOST DR5, and \napogee\ from
-APOGEE DR16.
-In total, \nrv\ stars in our sample have RVs from {\it either} Gaia, LAMOST,
-or APOGEE.
-The APOGEE survey has a higher spectral resolution than Gaia, which in turn is
-higher than LAMOST.
+After applying these cuts our total number of targets was \nstars.
+In total, \nrv\ stars in our sample have at least one RV measurement from
+Faia, LAMOST, or APOGEE; \ngaia\ have RVs from Gaia DR2, \nlamost\ from LAMOST
+DR5, and \napogee\ from APOGEE DR16.
+The APOGEE survey \citep[R $=$ 22,500;][]{apogee} has a higher spectral
+resolution than Gaia \citep[R $=$ 11,500;][]{cropper2018}, which in turn is
+higher than LAMOST \citep[R $=$ 1,800;][]{zhao2012}.
 The median RV uncertainty for stars in our sample is around 0.1 km/s for
 APOGEE RVs, 1 km/s for Gaia RVS, and 4 km/s for LAMOST RVs.
 In cases where stars had two or more available RV measurements, we adopted
@@ -37,8 +37,8 @@ spectroscopic surveys.
 Most of the stars in our sample with Gaia RV measurements are brighter than
 around 14th magnitude in Gaia $G$-band, and stars with LAMOST or APOGEE RVs
 are mostly brighter than around 16th magnitude.
-Figure \ref{fig:rv_histogram} shows the apparent magnitude and temperature
-distributions of the stars in our sample, with and without RVs.
+Figure \ref{fig:rv_histogram} shows the apparent magnitude distributions of
+the stars in our sample, with and without RVs.
 This figure reveals the combined selection functions of the Gaia, LAMOST and
 APOGEE RV surveys and shows that faint stars are less likely to have RV
 measurements than bright ones.
@@ -63,10 +63,16 @@ the red clump.
 Most stars without RVs fall on the main sequence.
 This overall selection function is a combination of the APOGEE, LAMOST and
 Gaia DR2 selection functions.
-% The Gaia DR2 selection function is primarily a cut in apparent Gaia $G$-band
-% magnitude.
-% The LAMOST selection function is...
-% The APOGEE selection function is...
+
+In this paper, we construct a prior using stars with RV measurements which we
+then use to infer the velocities of stars without RV measurements.
+However, given that the populations of stars with and without RVs are so
+different, this could bias the velocities we infer, particularly if they are
+prior-dependent.
+We investigate this idea in section \ref{sec:prior} and find that the \vx\ and
+\vz\ velocities we infer are relatively insensitive to the prior and therefore
+unlikely to biased, however the \vy\ velocities we infer should be used with
+caution as they are relatively prior-dependent.
 \begin{figure}[ht!]
 \caption{
     A magnitude-temperature diagram of stars in the Kepler field with (left)

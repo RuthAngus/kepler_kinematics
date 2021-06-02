@@ -86,7 +86,8 @@ using {\tt numpy} and {\tt Theano} \citep{numpy, theano}.
 The series of rotations and translations required to convert from equatorial
 to Galactocentric coordinates is described in the astropy
 documentation\footnote{
-    https://docs.astropy.org/en/stable/coordinates/galactocentric.html }.
+    https://docs.astropy.org/en/stable/coordinates/galactocentric.html }
+\citep{astropy2018}.
 For each star in the \kepler\ field, we explored the posteriors of the four
 parameters, \vx, \vy, \vz, and $\ln(D)$ using the {\it PyMC3} No U-Turn
 Sampler (NUTS) algorithm, and the {\tt exoplanet} \python\ library
@@ -117,6 +118,7 @@ direction and can be precisely inferred with proper motions alone.
 \caption{
 \x, \y\ and \z\ positions of stars observed by \kepler, showing the
     orientation of the \kepler\ field.
+The Sun's position is indicated with a Solar symbol.
 The direction of the field is almost aligned with the \y-axis and almost
     perpendicular to the \x\ and \z-axes, which is why \vx\ and \vz\ can be
     tightly constrained for \kepler\ stars without RVs, but \vy\ cannot.
@@ -238,8 +240,8 @@ using the prior calculated from the bright half of the RV sample, and the
 solid black line shows the results of the prior calculated from {\it all}
 stars with measured RVs.
 
-The median values of the \vy\ distributions, resulting from the faint and
-bright priors, differ by around 4 \kms.
+The median values of the \vy\ distributions resulting from the faint and
+bright priors differ by around 4 \kms.
 This is similar to the difference in means of the faint and bright populations
 (5 \kms, as quoted above).
 The inferred \vx\ and \vz\ distributions differ by 2 \kms\ and 0.3 \kms,
