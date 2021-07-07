@@ -39,7 +39,7 @@ in a pymc3-friendly framework.
 Calls functions in velocities.
 
 **inference.py**: Contains the prior and likelihood function for inferring
-velocities -- but I think it's for emcee. 
+velocities -- but I think it's for emcee.
 Calls functions in pymc3_functions_one_star, velocities and
 velocity_pm_conversion.
 
@@ -89,3 +89,6 @@ Notebooks
 **Demo_Notebook**: A notebook that demonstrates how to calculate stellar velocities. Also saves a figure of a posterior.
 
 **Examining_the_LAMOST_crossmatch**: Looking in detail at the Gaia-LAMOST crossmatch.
+
+**Xmatch_tests.ipynb**: Looking into the APOGEE, LAMOST, Gaia, and Kepler
+crossmatches in more detail.
