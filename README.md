@@ -92,3 +92,5 @@ Notebooks
 
 **Xmatch_tests.ipynb**: Looking into the APOGEE, LAMOST, Gaia, and Kepler
 crossmatches in more detail.
+
+**Lamost_xmatching.ipynb**: Starting from scratch so that I can try to redo the Lamost crossmatch.
