@@ -93,4 +93,4 @@ Notebooks
 **Xmatch_tests.ipynb**: Looking into the APOGEE, LAMOST, Gaia, and Kepler
 crossmatches in more detail.
 
-**Lamost_xmatching.ipynb**: Starting from scratch so that I can try to redo the Lamost crossmatch. Crossmatching Gaia and LAMOST by hand!
+**Lamost_xmatching.ipynb**: Crossmatching Gaia and LAMOST by hand using astropy tutorial: https://learn.astropy.org/rst-tutorials/4-Coordinates-Crossmatch
