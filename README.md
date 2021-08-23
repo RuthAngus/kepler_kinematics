@@ -93,4 +93,6 @@ Notebooks
 **Xmatch_tests.ipynb**: Looking into the APOGEE, LAMOST, Gaia, and Kepler
 crossmatches in more detail.
 
-**Lamost_xmatching.ipynb**: Crossmatching Gaia and LAMOST by hand using astropy tutorial: https://learn.astropy.org/rst-tutorials/4-Coordinates-Crossmatch
+**Lamost_xmatching.ipynb**: Crossmatching Gaia and LAMOST by hand using astropy tutorial: https://learn.astropy.org/rst-tutorials/4-Coordinates-Crossmatch . Creates data/lamost_gaia_kepler_crossmatch.csv , data/gaia_kepler_unique_matches.csv and data/lamost_near_kepler_footprint.csv
+
+**Data.ipynb**: A notebook that assembles the Lamost, Gaia, Kepler, and APOGEE data for each star. Saves the file data/rv_data
