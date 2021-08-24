@@ -8,18 +8,20 @@ For individual stars, run through Demo_Notebook.ipynb.
 For many stars, follow instructions for running on the cluster below.
 
 * ssh into cluster and navigate to aviary_tests/aviary.
-* The file containing vx, vy, vz and distance that you want to use to construct a prior should be in aviary_tests/aviary/aviary and should be called by pym3_
-* Create a new run_.py file and a new pymc3_multi_star.py or edit the
-    get_velocities_general.py.
-* Create a new run_.py file and run_.sh file.
-* Change the upper and lower indices in the run file, depending on how many
+* The file containing vx, vy, vz and distance that you want to use to construct a prior should be in aviary_tests/aviary/aviary and should be called by pymc3_functions_one_star.py
+* Create a new run_.py file to loop over kepler ID and a new pymc3_multi_star.py or edit the
+    get_velocities_general.py to control your priors and data file.
+    (run_edr3.py and get_velocities_general are the files for edr3 data.)
+* Create a new run_.sh file.
+* Change the upper and lower indices in the run_.py file, depending on how many
     stars you want to run on.
 * Change the directory and data file in code/get_velocities_general.py
+    (and make sure you have created the directory you need to save velocities in code/velocities/'suffix').
 * The data file must contain ra, ra_error, dec, dec_error, parallax,
-    parallax_error, pmra, pmra_error, pmdec, pmdec_error.
+    parallax_error, pmra, pmra_error, pmdec, pmdec_error, and r_med_photogeo.
 * Create a new .sh file and do module load slurm, sbatch <.sh file>.
-* To watch progress: tail -f slurm-.out
-* assemble_all_results.py combines individual .csv results files into one file.
+* To watch progress: tail -f slurm-.out (ctrl-x-c to exit).
+* assemble_all_results.py combines individual .csv results files into one file (seems to be more recently updated).
 * assemble_results.py also calculates proper motions from the inferred RVs.
 
 
