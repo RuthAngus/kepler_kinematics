@@ -89,6 +89,7 @@ def get_prior(cuts="all"):
     """
     vel_data = pkg_resources.resource_filename(
         __name__, "data.csv")
+        # __name__, "gaia_kepler_lamost.csv")
     df = pd.read_csv(vel_data)
 
     # lnD = np.log(1./df.parallax)
