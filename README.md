@@ -20,9 +20,11 @@ For many stars, follow instructions for running on the cluster below.
 * The data file must contain ra, ra_error, dec, dec_error, parallax,
     parallax_error, pmra, pmra_error, pmdec, pmdec_error, and r_med_photogeo.
 * Create a new .sh file and do module load slurm, sbatch <.sh file>.
-* To watch progress: tail -f slurm-.out (ctrl-x-c to exit).
+* To watch progress: tail -f slurm-.out (ctrl-c to exit).
 * assemble_all_results.py combines individual .csv results files into one file (seems to be more recently updated).
 * assemble_results.py also calculates proper motions from the inferred RVs.
+* To run tests on faint and bright stars, change the prior settings in get_velocities_general.py.
+    Make sure the /bright /faint and /all directories exist in the 'suffix' directory. 
 
 
 kepler_kinematics
