@@ -46,6 +46,9 @@ equally well described by either increasing both \vy\ and \vz, or decreasing
 both \vy\ and \vz.
 For this reason, the star's posterior PDF over \vy\ and \vz\ will be
 positively correlated.
+This results in a paradox that is similar to Simpson's paradox: the posteriors
+over vy and vz are positively correlated for individual stars, however the vy
+and vz velocities of the population are negatively correlated.
 
 % could have {\it
 % either} a positive \vz, or a postitive \vy. with a positive
@@ -96,12 +99,13 @@ differing levels of precision: \vx\ and \vz\ are inferred more precisely than
 This is because of the position of the \kepler\ field, shown in figure
 \ref{fig:kepler_field}.
 The velocities of low-\vy\ stars are overestimated and the velocities of
-high-\vy\ stars are undeestimated.
+high-\vy\ stars are underestimated.
 This is because there is little information to constrain the \vy\ velocities
 and the prior pulls the \vy\ velocities toward the center of the distribution.
 The \vx, \vy\ and \vz\ velocities of stars are correlated, which means that
 stars with an inaccurate \vy\ also have slightly accurate \vz\ and \vx.
-Despite slight systematic inaccuracies, Around 68\% of the inferred velocities
+Despite slight systematic inaccuracies {\bf visible in the residual (bottom)
+panels of figure \ref{fig:residuals}}, around 68\% of the inferred velocities
 are within 1$\sigma$ of their true velocities; the inferred velocities are
 consistent with the true velocities.
 
