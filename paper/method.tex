@@ -232,6 +232,8 @@ informative prior anyway.
     corresponding colors.
     The solid black line shows the Gaussian fit to all data (bright and faint
     combined) and is the prior we ended up using in our model.
+    This figure highlights the differences between the velocities and
+    distances of bright and faint stars (with RVs) in our sample.
 }
   \centering
     \includegraphics[width=1\textwidth]{prior_distributions}
@@ -244,13 +246,16 @@ If the inferred velocities were highly prior-dependent, the resulting
 distributions, obtained from different priors, would look very different.
 The results of this test are shown in figure \ref{fig:prior_comparison}.
 From left to right, the three panels show the distributions of inferred \vx,
-\vy, and \vz.
-The blue dashed line shows a KDE, representing the distributions of velocities
+\vy, \vz, and log-distance.
+The blue dashed line shows a KDE representing the distributions of velocities
 inferred using the prior calculated from the faint half of the RV sample.
 Similarly, the solid orange line shows the distribution of inferred velocities
 using the prior calculated from the bright half of the RV sample, and the
 solid black line shows the results of the prior calculated from {\it all}
 stars with measured RVs.
+{\bf In all but the \vy\ panel (second from the left), the blue, orange,
+and black lines lie on top of each other, indicating that different priors do
+not significantly influence the resulting velocities.}
 
 The median values of the \vy\ distributions resulting from the faint and
 bright priors differ by around 4 \kms.
@@ -282,6 +287,8 @@ The blue dashed line shows the results from a prior estimated from the faint
     half of the RV sample ($G > 13$)).
 The black line shows the results from a prior calculated from all stars with
     RV measurements and is the prior we adopt in our final analysis.
+    {\bf This figure shows that all parameters except \vy\ are relatively
+    insensitive to the three priors that were tested}.
     }
   \centering
     \includegraphics[width=1\textwidth]{prior_comparison}
@@ -293,12 +300,12 @@ The black line shows the results from a prior calculated from all stars with
 
 Although this test was performed on stars with RV measurements, which are
 brighter overall than the sample of stars without RVs (\eg\ figure
-\ref{fig:rv_histogram}), figure \ref{fig:prior_comparison} nevertheless shows
-that \vx\ and \vz\ are not strongly prior-dependent.
+\ref{fig:rv_histogram}), figure \ref{fig:prior_comparison} nevertheless
+indicates that \vx\ and \vz\ are not strongly prior-dependent.
 Since this work is chiefly motivated by kinematic age-dating, which mostly
-requires vertical velocities (\vz) we are satisfied with these results.
-The difference in the dispersions of \vz\ velocities, calculated with the
-three different priors tested above was smaller than 0.5 \kms.
+requires vertical velocities (\vz), we are satisfied with these results.
+% The difference in the dispersions of \vz\ velocities, calculated with the
+% three different priors tested above was smaller than 0.5 \kms.
 We conclude that the \vx\ and \vz\ velocities we infer are relatively
 insensitive to prior choice, and we adopt a prior calculated from the
 distributions of all stars with RV measurements (black Gaussians in figure
@@ -309,9 +316,9 @@ caution.
 Figure \ref{fig:posterior} shows the posterior PDF over velocity and distance
 parameters for a randomly selected Kepler target with an RV measurement, KIC
 \kicstar.
-Blue lines in each panel indicate the velocities calculated using the RV
-measurement and the distributions indicated the probability density of the
-parameters, inferred {\it without} the RV measurement.
+The blue lines in each panel indicate star's velocities, directly calculated
+using the RV measurement, and the distributions indicate the probability
+density of the parameters inferred {\it without} the RV measurement.
 The velocity parameters are correlated because the lack of RV introduces a
 slight degeneracy: the star's proper motion can be equally well described with
 a range of different velocities.
