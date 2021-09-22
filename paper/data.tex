@@ -26,7 +26,11 @@ ratio $<$ 10, and Gaia astrometric excess noise $>$ 5.
 To preferentially select single stars, we removed stars with {\tt ruwe} $\geq$
 1.4, {\tt ipd\_frac\_multi\_peak} $>2$, and {\tt
 ipd\_gof\_harmonic\_amplitude} $\geq$ 0.1.
-}
+APOGEE reports VSCATTER, which is the error-deconvolved scatter in the
+individual time-series RV measurements for each source and can indicate that a
+star is a binary.
+We removed 208 stars in our final sample with APOGEE VSCATTER greater than 1
+\kms.}
 After applying these cuts our total number of targets was \nstars.
 In total, \nrv\ stars in our sample have at least one RV measurement from
 Gaia, LAMOST, or APOGEE; \ngaia\ have RVs from Gaia DR2, \nlamost\ from LAMOST
@@ -35,7 +39,8 @@ The APOGEE survey \citep[R $=$ 22,500;][]{apogee} has a higher spectral
 resolution than Gaia \citep[R $=$ 11,500;][]{cropper2018}, which in turn is
 higher than LAMOST \citep[R $=$ 1,800;][]{zhao2012}.
 The median RV uncertainty for stars in our sample is around 0.1 km/s for
-APOGEE RVs, 1 km/s for Gaia RVS, and 5 km/s for LAMOST RVs.
+APOGEE RVs, 1 km/s for Gaia RVS, and 5 km/s for
+LAMOST RVs.
 In cases where stars had two or more available RV measurements, we adopted
 APOGEE RVs as a first priority, followed by Gaia, then LAMOST.
 
