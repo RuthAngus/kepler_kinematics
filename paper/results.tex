@@ -21,15 +21,15 @@ If the velocity distributions of stars were Gaussian, the 1D red Gaussians
 would look like the cyan histograms.
 In other words, the differences between the red lines and cyan histograms
 is caused by the non-Gaussianity of the velocity distributions.
-{\bf This figure is intended to highlight the differences and similarities
-between the inferred stellar velocities and the prior distributions}.
+This figure is intended to highlight the differences and similarities
+between the inferred stellar velocities and the prior distributions.
 In each panel, the distribution of inferred velocities is fairly similar to
 the distribution of directly-measured velocities; the velocities of stars
 calculated with and without RVs are broadly similar.
-{\bf The inferred \vx\ and \vz\ velocities, and distances are relatively
+The inferred \vx\ and \vz\ velocities, and distances are relatively
 precise, with median uncertainties of \vxprecision \kms, \vzprecision\ \kms,
 and \dprecision\ kpc, respectively.
-The inferred \vy\ velocities have a median uncertainty of \vyprecision\ \kms}.
+The inferred \vy\ velocities have a median uncertainty of \vyprecision\ \kms.
 
 % Among stars with measured RVs, \vy\ and \vz\ are slightly positively
 % correlated, \ie\ stars with larger \vy\ tend to have larger \vz.
@@ -38,23 +38,29 @@ velocities, which is visible in the central panel of figure \ref{fig:results}.
 This negative correlation is not seen in the prior, nor is it apparent in the
 posteriors of individual stars: figure \ref{fig:posterior} shows that the \vy\
 and \vz\ parameters are {\it positively} correlated for KIC \kicstar.
-The negative correlation seen in the population of inferred velocities is
-caused by the specific orientation of the Kepler field which creates a slight
-degeneracy between \vy\ and \vz.
-This orientation creates a negative correlation in the population of stars,
-that is not apparent in the posteriors of individual stars.
-{\bf To an observer looking at Kepler field, a star with either a positive
-\vz\ or a {\it negative} \vy\ would appear to move in the direction of
-positive \vz, when projected onto the sky.
-In this sense, \vy\ and \vz\ are negatively correlated.
-However, the observed proper motions of a star without a measured RV could be
-equally well described by either increasing both \vy\ and \vz, or decreasing
-both \vy\ and \vz.
-For this reason, the star's posterior PDF over \vy\ and \vz\ will be
-positively correlated.
-This results in a paradox that is similar to Simpson's paradox: the posteriors
-over vy and vz are positively correlated for individual stars, however the vy
-and vz velocities of the population are negatively correlated}.
+This negative correlation may be due to the specific orientation of the Kepler
+field, which creates a slight degeneracy between \vy\ and \vz.
+% , and could
+% result in a negative correlation in the population of stars that is not
+% apparent in the posteriors of individual stars.
+% To an observer looking at Kepler field, a star with either a positive
+% \vz\ or a {\it negative} \vy\ would appear to move in the direction of
+% positive \vz, when projected onto the sky.
+% In this sense, \vy\ and \vz\ are negatively correlated.
+% However, the observed proper motions of a star without a measured RV could be
+% equally well described by either increasing both \vy\ and \vz, or decreasing
+% both \vy\ and \vz.
+% For this reason, the star's posterior PDF over \vy\ and \vz\ will be
+% positively correlated.
+% This could result in a paradoxical result whereby the posteriors over vy and
+% vz are positively correlated for individual stars, however the vy and vz
+% velocities of the population are negatively correlated.
+If this explanation is correct, this phenomenon highlights how apparent
+correlations in stellar velocities could result from {\it missing}
+information.
+This point is interesting, but the effect is relatively small and we do not
+expect that this observed correlation between \vz\ and \vy\ will significantly
+affect kinematic age studies.
 
 % could have {\it
 % either} a positive \vz, or a postitive \vy. with a positive
@@ -81,9 +87,9 @@ The upper-right panels in the figure, lying on the plot's diagonal, show the
 The black histogram shows the distribution of inferred velocities, the blue
 histogram shows the distribution of velocities for stars with RVs,
 and the red lines show the 1D marginal Gaussian prior distributions.
-{\bf This figure shows that the distributions of inferred velocities are
+This figure shows that the distributions of inferred velocities are
     broadly similar to the distributions of velocities directly calculated
-    using RVs, and the prior constructed from them.}
+    using RVs, and the prior constructed from them.
 }
   \centering
     \includegraphics[width=.7\textwidth]{results}
@@ -113,8 +119,8 @@ This is because there is little information to constrain the \vy\ velocities
 and the prior pulls the \vy\ velocities toward the center of the distribution.
 The \vx, \vy\ and \vz\ velocities of stars are correlated, which means that
 stars with an inaccurate \vy\ also have slightly accurate \vz\ and \vx.
-Despite slight systematic inaccuracies {\bf visible in the residual (bottom)
-panels of figure \ref{fig:residuals}}, around 68\% of the inferred velocities
+Despite slight systematic inaccuracies visible in the residual (bottom)
+panels of figure \ref{fig:residuals}, around 68\% of the inferred velocities
 are within 1$\sigma$ of their true velocities; the inferred velocities are
 consistent with the true velocities.
 
