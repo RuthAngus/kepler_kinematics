@@ -12,6 +12,9 @@ stellar positions and velocities in equatorial
 coordinates into positions and velocities in Galactocentric coordinates.
 It converts positions, proper motions, parallaxes/distances, and RVs into \x,
 \y, \z, \vx, \vy, \vz.
+We adopted a Solar position of $r_\odot = 8.122$ kpc \citep{gravity2018} and
+$z_\odot = 20.8$ pc \citep{bennet2019}, and a Solar velocity of $v\odot =
+(12.9, 245.6, 7.78)$ \kms \citep{drimmel2018}.
 For stars {\it without} RVs, we inferred their velocities by marginalizing
 over their RVs using the method described below.
 
@@ -142,11 +145,19 @@ These are the distributions we used to construct the prior.
 The 1- and 2-$\sigma$ contours of the multivariate Gaussian prior is shown in
 each panel in red.
 This figure shows that Gaussian functions only approximately reproduce
-the true velocity distributions.
+the true velocity distributions, and do not capture the substructure.
 We could have chosen a more complex prior that would fit these data better,
-however since this prior is constructed using stars with RVs, which may have a
-slightly different velocity distribution to stars without RVs, we opted for
-the more uninformative, simple Gaussian prior.
+for example, a mixture of Gaussians, which would capture the moving groups in
+the Solar neighborhood.
+This may result in slightly more accurate inferred velocities.
+However, since our goal is kinematic age dating, we only need to resolve the
+vertical velocity component to a sufficient precision that will accurately
+allow for calculations of vertical velocity dispersions, so the minor gain in
+precision will not have a large affect on the end results.
+In addition, since this prior is constructed using stars with RVs, which may
+have a slightly different velocity distribution to stars without RVs, we opted
+for the more uninformative, simple Gaussian prior.
+
 
 \begin{figure}[ht!]
 \caption{
