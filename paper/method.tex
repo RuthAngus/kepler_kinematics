@@ -158,7 +158,6 @@ In addition, since this prior is constructed using stars with RVs, which may
 have a slightly different velocity distribution to stars without RVs, we opted
 for the more uninformative, simple Gaussian prior.
 
-
 \begin{figure}[ht!]
 \caption{
 The velocity and distance distributions for stars with RV measurements,
@@ -323,6 +322,19 @@ distributions of all stars with RV measurements (black Gaussians in figure
 \ref{fig:prior_distributions}).
 The \vy\ velocities are more strongly prior dependent and should be used with
 caution.
+
+{\bf
+In future, it could be beneficial to adopt a non-Gaussian prior for the
+velocity distributions of nearby stars, based on a model for the rotation of
+stars around the Galactic center \citep[\eg][]{schonrich2012}.
+This would help inform the velocities in the y-direction in a physically
+motivated way.
+In general, to extend this Kepler-field-specific analysis to other populations
+of stars in different parts of the Galaxy, alternative priors will have to be
+constructed.
+However, this is beyond the scope of this simple study and we leave this task
+for a future exercise.
+}
 
 Figure \ref{fig:posterior} shows the posterior PDF over velocity and distance
 parameters for a randomly selected Kepler target with an RV measurement, KIC

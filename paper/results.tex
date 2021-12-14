@@ -1,4 +1,4 @@
-\section{Results}
+\section{Results and Discussion}
 \label{sec:results}
 
 \subsection{Inferred velocities}
@@ -131,6 +131,63 @@ A description of each column included in that table is provided in table
 \ref{tab:columns}.
 % A sample of this table is displayed here, and the full machine-readable table
 % is available online.
+
+{\bf
+As briefly mentioned in the introduction, we have gone to the trouble of
+inferring velocities in this paper because calculating velocities from proper
+motions and distances alone, \ie\ assuming the RV is zero, will bias the
+resulting velocities.
+To demonstrate this, figure \ref{fig:inferred_vs_calc} shows the velocity
+residuals for stars in our sample where we infer the velocities by
+marginalizing over RV and where we ignore RV, \ie\ set it to zero.
+In each panel, the green distributions show the residuals between the true
+velocities and our inferred velocities, and the purple distributions show the
+residuals between the true velocities and velocities calculated by setting the
+RV to zero.
+The median of each distribution is shown as a vertical line.
+This figure shows that ignoring the RV dimension and assuming it can be set to
+zero significantly biases the resulting velocities.
+The correct way to de-bias velocity calculations is to marginalize over
+missing RV measurements.
+}
+\begin{figure}[ht!]
+\caption{
+    \bf{
+Residual velocity distributions calculated by marginalizing over missing RV
+    measurements (green) or by assuming the RV can be set to zero (purple) for
+    5000 stars in our sample.
+Each distribution shows the residuals between the inferred/calculated
+    velocities, and the velocities calculated using full 6D information:
+    parallaxes, positions, proper motions, and RVs.
+The vertical lines show the medians of each distribution.
+This figure demonstrates that calculating stellar velocities using proper
+    motions and distances alone will significantly bias the results.
+Marginalizing over missing RV measurements ensures the resulting velocities
+    will be unbiased.
+    }
+}
+  \centering
+    \includegraphics[width=1\textwidth]{inferred_vs_calc}
+\label{fig:inferred_vs_calc}
+\end{figure}
+
+{\bf
+Our intention in providing a table of stellar velocities, and outlining our
+method for inferring velocities without RV measurements, is to facilitate
+kinematic age-dating studies.
+The vertical velocities we provide could be used as an age proxy, or to
+calculate kinematic ages via an age-velocity dispersion relation
+\citep[\eg][]{yu2018, mackereth2019, sharma2021}.
+This kind of approach has been used many times to examine the kinematic ages
+of cool stars to explore stellar and planetary evolution
+\citep[\eg][]{newton2016, kiman2019, hamer2019, angus2020, lu2021}.
+For example, \citet{kiman2019} used the vertical velocity dispersions of stars
+as an age proxy to explore the evolution of H$\alpha$ equivalent width (a
+magnetic activity indicator), in M dwarfs.
+\citet{hamer2019} compared the vertical velocity dispersions of stars with and
+without hot Jupiters to show that hot Jupiter hosts tend to be younger, on
+average, than stars without detected hot Jupiters.
+}
 
 % \begin{table}[h!]
 %   \begin{center}

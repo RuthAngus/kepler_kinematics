@@ -60,7 +60,7 @@ kinematic ages of stars using an AVR.
 RV measurements, combined with positions, parallaxes, and proper motions
 measured in the plane of the sky, complete the full set of information needed
 to calculate 3D stellar velocities.
-However, RV can generally has to be measured from a stellar spectrum -- an
+However, RV generally has to be measured from a stellar spectrum -- an
 observation that requires a significant number of photons and is thus
 expensive to obtain, particularly for faint stars \footnote{RVs can also be
 derived from perspective acceleration for high proper motion stars
@@ -161,6 +161,14 @@ a small part of the sky.
 The two approaches will be useful for different scientific applications, and
 it is extremely useful to have multiple approaches to solving this fundamental
 problem in astronomy.
+
+{\bf
+It is worth noting that ignoring the RV dimension and attempting to
+calculate stellar velocities with proper motions and distances alone, \ie\
+assuming that RV can be set to zero, will introduce a significant bias in the
+resulting velocities.
+We explore this point further in section \ref{sec:results}.
+}
 % Whereas our velocities are limited by the lack of information in the 6th
 % dimension, theirs benefit from learned patterns in the data, and the precision
 % of their resulting velocities are not fundamentally limited in the same way as
