@@ -324,16 +324,22 @@ The \vy\ velocities are more strongly prior dependent and should be used with
 caution.
 
 {\bf
-In future, it could be beneficial to adopt a non-Gaussian prior for the
-velocity distributions of nearby stars, based on a model for the rotation of
-stars around the Galactic center \citep[\eg][]{schonrich2012}.
-This would help inform the velocities in the y-direction in a physically
-motivated way.
-In general, to extend this Kepler-field-specific analysis to other populations
-of stars in different parts of the Galaxy, alternative priors will have to be
-constructed.
-However, this is beyond the scope of this simple study and we leave this task
-for a future exercise.
+A better prior for the velocity distribution would be a phase-space
+distribution function that takes into account asymmetric drift and other
+nontrivial aspects of the local velocity distribution.
+However, priors of this form would require a model for the phase-space
+distribution function, $f(x,y,z,v_x,v_y,v_z)$, which would require a
+hierarchical model that takes into account covariances between the spatial and
+kinematic properties of stars \citep[\eg][]{trick2016, hagen2019,
+anguiano2020}.
+We consider this to be outside of the scope of this work, and instead argue
+that our assumed isotropic velocity prior is a conservative choice because it
+does not impose any covariant structure between velocity components or
+dependencies on Galactic position.
+However, in general, to extend this Kepler-field-specific analysis to other
+populations of stars in different parts of the Galaxy, alternative priors will
+have to be constructed.
+We leave this for a future exercise.
 }
 
 Figure \ref{fig:posterior} shows the posterior PDF over velocity and distance
@@ -353,6 +359,10 @@ because it is precisely determined by parallax.
 \caption{
 The posterior PDF over parameters \vx, \vy, \vz\ and $\ln$(distance) for a
     Kepler target chosen at random: KIC \kicstar.
+    {\bf
+    Blue lines show the location of the star's `true' parameters, based on a
+    calculation that includes the RV measurement.
+    }
 This figure shows that the velocity parameters are correlated and the star's
     posterior is elongated in \vy.
     }
