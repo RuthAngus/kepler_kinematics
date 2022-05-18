@@ -217,35 +217,35 @@ The list of columns in the data table published online, which provides
 \begin{tabular}{cc}
     Column name & Description \\
 \hline
-    {\tt kic$\_$id} & The Kepler Input Catalog ID number of the target. \\
-    {\tt source$\_$id} & The Gaia DR3 ID number of the target. \\
-    {\tt ra, ra$\_$error} & Gaia EDR3 right ascenscion ($^\circ$). \\
-    {\tt dec, dec$\_$error} & Gaia EDR3 declination in degrees ($^\circ$). \\
-    {\tt parallax, parallax$\_$error} & Gaia EDR3 parallax (mas). \\
-    {\tt r$\_$med$\_$photogeo, r$\_$lo$\_$photogeo, r$\_$hi$\_$photogeo} & Distance
+    {\tt KIC} & The Kepler Input Catalog ID number of the target. \\
+    {\tt Gaia} & The Gaia DR3 source ID of the target. \\
+    {\tt RAdeg, e$\_$RAdeg} & Gaia EDR3 right ascenscion ($^\circ$). \\
+    {\tt DEdeg, e$\_$DEdeg} & Gaia EDR3 declination in degrees ($^\circ$). \\
+    {\tt plx, e$\_$plx} & Gaia EDR3 parallax (mas). \\
+    {\tt Dist, b$\_$Dist, B$\_$Dist} & Distance, lower and upper bounds
     (parsec), provided by \citet{bailer-jones2021}. \\
-    {\tt pmra, pmra$\_$error} & Gaia EDR3 proper motion in right ascension (mas/yr). \\
-    {\tt pmdec, pmdec$\_$error} & Gaia EDR3 proper motion in declination (mas/yr). \\
-    {\tt gaia$\_$dr2$\_$rv, gaia$\_$dr2$\_$rv$\_$error} & Gaia DR2 radial velocity (km/s) \\
-    {\tt apogee$\_$rv, apogee$\_$rv$\_$error} & APOGEE DR16 radial velocity (km/s) \\
-    {\tt lamost$\_$rv, lamost$\_$rv$\_$error} & LAMOST DR5 radial velocity (km/s) \\
-    {\tt vx$\_$calc} & The \vx\ velocity calculated using RV (km/s). \\
-    {\tt vx$\_$inferred, vx$\_$inferred$\_$error} & Median and std.
+    {\tt pmRA, e$\_$pmRA} & Gaia EDR3 proper motion in right ascension (mas/yr). \\
+    {\tt pmDE, e$\_$pmDE} & Gaia EDR3 proper motion in declination (mas/yr). \\
+    {\tt RV-gaiaDR2, e$\_$RV-gaiaDR2} & Gaia DR2 radial velocity (km/s) \\
+    {\tt RV-apo16, e$\_$RV-apo16} & APOGEE DR16 radial velocity (km/s) \\
+    {\tt RV-lamDR5, e$\_$RV-lamDR5} & LAMOST DR5 radial velocity (km/s) \\
+    {\tt vx-calc} & The \vx\ velocity calculated using RV (km/s). \\
+    {\tt vx-inferred, e$\_$vx-inferred} & Median and std.
     dev, of \vx\ velocity samples, inferred without RV (km/s). \\
-    {\tt vy$\_$calc} & The \vy\ velocity calculated using RV (km/s). \\
-    {\tt vy$\_$inferred, vy$\_$inferred$\_$error} & Median and std.
+    {\tt vy-calc} & The \vy\ velocity calculated using RV (km/s). \\
+    {\tt vy-inferred, e$\_$vy-inferred} & Median and std.
     dev. of \vy\ velocity samples, inferred without RV (km/s). \\
-    {\tt vz$\_$calc} & The \vz\ velocity calculated using RV (km/s). \\
-    {\tt vz$\_$inferred, vz$\_$inferred$\_$error} & Median and std.
+    {\tt vz-calc} & The \vz\ velocity calculated using RV (km/s). \\
+    {\tt vz-inferred, e$\_$vz-inferred} & Median and std.
     devi. of \vz\ velocity samples, inferred without RV (km/s). \\
-    {\tt vxvy$\_$covar} & The covariance between \vx\ and \vy\ samples. \\
-    {\tt vxvz$\_$covar} & The covariance between \vx\ and \vz\ samples. \\
-    {\tt vxlnd$\_$covar} & The covariance between \vx\ and $\ln$(distance)
+    {\tt vxvy-covar} & The covariance between \vx\ and \vy\ samples. \\
+    {\tt vxvz-covar} & The covariance between \vx\ and \vz\ samples. \\
+    {\tt vxlnd-covar} & The covariance between \vx\ and $\ln$(distance)
     samples. \\
-    {\tt vyvz$\_$covar} & The covariance between \vy\ and \vz\ samples. \\
-    {\tt vylnd$\_$covar} & The covariance between \vy\ and $\ln$(distance)
+    {\tt vyvz-covar} & The covariance between \vy\ and \vz\ samples. \\
+    {\tt vylnd-covar} & The covariance between \vy\ and $\ln$(distance)
     samples. \\
-    {\tt vzlnd$\_$covar} & The covariance between \vz\ and $\ln$(distance)
+    {\tt vzlnd-covar} & The covariance between \vz\ and $\ln$(distance)
     samples. \\
 \end{tabular}
 \end{center}
